@@ -2,11 +2,11 @@
 
 public class Comment
 {
-    public int? id { get; set; }
-    public int userId { get; set; }
-    public int productId { get; set; }
-    public string content { get; set; }
-    public DateTime createdAt { get; set; }
-    public DateTime updatedAt { get; set; }
-    public DateTime? deletedAt { get; set; }
+    public int? Id { get; set; }
+    public int UserId { get; set; }
+    public int ProductId { get; set; }
+    public string Content { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
 }
