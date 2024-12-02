@@ -52,6 +52,12 @@ class Program
             _gd.MainSwapchain.Resize((uint)_window.Width, (uint)_window.Height);
             _controller.WindowResized(_window.Width, _window.Height);
         };
+        
+        _window.Closed += () =>
+        {
+            host.StopAsync().Wait();
+            thread.Join();
+        };
 
         _cl = _gd.ResourceFactory.CreateCommandList();
         _controller = new ImGuiController(_gd, _gd.MainSwapchain.Framebuffer.OutputDescription, _window.Width, _window.Height);
@@ -118,6 +124,7 @@ class Program
     
     private static unsafe void RenderUI()
     {
-        ImGui.Text("Oregon - Admin");
+        ImGui.SeparatorText("Controls");
+        ImGui.Text("Work in progress...");
     }
 }
