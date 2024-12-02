@@ -3,8 +3,10 @@ using System.Numerics;
 using ImGuiNET;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using oregon_backend.Models;
 using Veldrid;
 using Veldrid.Sdl2;
 using Veldrid.StartupUtilities;
@@ -17,11 +19,28 @@ class Program
     private static GraphicsDevice _gd;
     private static ImGuiController _controller;
     private static CommandList _cl;
-
+    
+    private static String _connString = "Server=localhost;Database=oregon;User=sa;Password=@Cendy123;TrustServerCertificate=True;";
     private static Vector3 _clearColor = new(0.45f, 0.55f, 0.6f);
 
+    /*
+     * dotnet ef migrations add migration_name -- --migrate
+     * dotnet ef database update -- --migrate
+     */
     private static void Main(string[] args)
     {
+        if (args.Contains("migrate"))
+        {
+            CreateHostBuilder(args).Build().Run();
+            return;
+        }
+        var host = CreateHostBuilder(args).Build();
+        var thread = new Thread(() =>
+        {
+            host.Run();
+        });
+        thread.Start();
+        
         VeldridStartup.CreateWindowAndGraphicsDevice(
             new WindowCreateInfo(50, 50, 800, 400, WindowState.Normal, "Oregon - Backend"),
             new GraphicsDeviceOptions(true, null, true, ResourceBindingModel.Improved, true, true),
@@ -39,9 +58,6 @@ class Program
 
         var stopwatch = Stopwatch.StartNew();
         var deltaTime = 0f;
-        
-        var serverThread = new Thread(RunServer);
-        serverThread.Start();
         
         while (_window.Exists)
         {
@@ -77,15 +93,16 @@ class Program
         _gd.Dispose();
     }
 
-    private static void RunServer()
+    private static IHostBuilder CreateHostBuilder(string[] args)
     {
-        var host = Host.CreateDefaultBuilder()
+        var host = Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseUrls("http://localhost:5000");
                 webBuilder.ConfigureServices(services =>
                 {
                     services.AddControllers();
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_connString));
                 });
                 webBuilder.Configure(app =>
                 {
@@ -95,12 +112,10 @@ class Program
                         endpoints.MapControllers();
                     });
                 });
-            })
-            .Build();
-
-        host.Run();
+            });
+        return host;
     }
-
+    
     private static unsafe void RenderUI()
     {
         ImGui.Text("Oregon - Admin");

@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "oregon-backend\\Controllers\\User.cs",
               "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\User.cs",
               "RelativeToolTip": "oregon-backend\\Controllers\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-02T09:21:19.459Z",
               "EditorCaption": ""
@@ -47,8 +47,7 @@
               "RelativeToolTip": "oregon-backend\\Program.cs",
               "ViewState": "AgIAAEkAAAAAAAAAAAAgwBoAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T09:01:21.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T09:01:21.154Z"
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "oregon-backend\\oregon-backend.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-12-02T09:00:46.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T09:00:46.594Z"
             }
           ]
         }
