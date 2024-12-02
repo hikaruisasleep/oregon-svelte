@@ -9,9 +9,9 @@
 >
 	<i class="fa-solid fa-magnifying-glass fa-xl leading-normal"></i>
 	<input
-		type="text"
-		name=""
-		id=""
+		type="search"
+		name="search"
+		id="searchbar"
 		class="m-0 h-5/6 w-11/12 border-none p-0"
 		placeholder="Cari di website ini..."
 	/>
