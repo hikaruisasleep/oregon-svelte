@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using oregon_backend.Models;
@@ -18,6 +19,7 @@ public class Product: ControllerBase
     }
     
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
         var products = await _context.Products.ToListAsync();
@@ -25,6 +27,7 @@ public class Product: ControllerBase
     }
     
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> Get(int id)
     {
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -38,6 +41,7 @@ public class Product: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post()
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         using var reader = new StreamReader(Request.Body);
         var bodyStr = await reader.ReadToEndAsync();
         var product = JsonSerializer.Deserialize<ProductAddRequest>(bodyStr, new JsonSerializerOptions
@@ -65,6 +69,7 @@ public class Product: ControllerBase
             Name = product.Name,
             Price = product.Price,
             Description = product.Description,
+            UserId = userId,
             ImageUrl = product.ImageUrl,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now
@@ -84,6 +89,7 @@ public class Product: ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         using var reader = new StreamReader(Request.Body);
         var bodyStr = await reader.ReadToEndAsync();
         var product = JsonSerializer.Deserialize<ProductAddRequest>(bodyStr, new JsonSerializerOptions
@@ -111,7 +117,12 @@ public class Product: ControllerBase
         {
             return NotFound();
         }
-        
+
+        if (existingProduct.UserId != userId)
+        {
+            return Unauthorized();
+        }
+
         existingProduct.Name = product.Name;
         existingProduct.Price = product.Price;
         existingProduct.Description = product.Description;
@@ -131,12 +142,18 @@ public class Product: ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         if (product == null)
         {
             return NotFound();
         }
-        
+
+        if (product.UserId != userId)
+        {
+            return Unauthorized();
+        }
+
         _context.Products.Remove(product);
         await _context.SaveChangesAsync();
         

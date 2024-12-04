@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using oregon_backend.Models;
@@ -18,6 +19,7 @@ public class Comment: ControllerBase
     }
     
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
         var comments = await _context.Comments.ToListAsync();
@@ -25,6 +27,7 @@ public class Comment: ControllerBase
     }
     
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> Get(int id)
     {
         var comment = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
@@ -34,6 +37,7 @@ public class Comment: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post()
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var bodyStr = await new StreamReader(Request.Body).ReadToEndAsync();
         var body = JsonSerializer.Deserialize<CommentAddRequest>(bodyStr);
         
@@ -42,20 +46,30 @@ public class Comment: ControllerBase
             return BadRequest();
         }
         
-        if (body.UserId == 0 || body.ProductId == 0 || body.Content == null)
+        if (userId == 0 || body.ProductId == 0 || body.Content.Length == 0 || body.Rating == 0)
         {
             return BadRequest();
         }
         
         var comment = new Models.Comment()
         {
-            UserId = body.UserId,
+            UserId = userId,
             ProductId = body.ProductId,
             Content = body.Content,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now
         };
-        
+
+        var rating = new Models.Rating()
+        {
+            UserId = userId,
+            ProductId = body.ProductId,
+            Value = body.Rating,
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now
+        };
+
+        await _context.Ratings.AddAsync(rating);
         await _context.Comments.AddAsync(comment);
         await _context.SaveChangesAsync();
 
@@ -70,6 +84,7 @@ public class Comment: ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var bodyStr = await new StreamReader(Request.Body).ReadToEndAsync();
         var body = JsonSerializer.Deserialize<CommentUpdateRequest>(bodyStr);
         
@@ -84,7 +99,12 @@ public class Comment: ControllerBase
         {
             return NotFound();
         }
-        
+
+        if (comment.UserId != userId)
+        {
+            return Unauthorized();
+        }
+
         if (body.Content != null)
         {
             comment.Content = body.Content;
@@ -105,13 +125,19 @@ public class Comment: ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var comment = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
         
         if (comment == null)
         {
             return NotFound();
         }
-        
+
+        if (comment.UserId != userId)
+        {
+            return Unauthorized();
+        }
+
         _context.Comments.Remove(comment);
         await _context.SaveChangesAsync();
         
