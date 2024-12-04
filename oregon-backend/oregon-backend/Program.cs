@@ -13,6 +13,8 @@ using Veldrid.StartupUtilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using System.Text.Json;
+using oregon_backend.types;
 
 namespace oregon_backend;
 
@@ -23,8 +25,18 @@ class Program
     private static ImGuiController _controller;
     private static CommandList _cl;
     
-    private static String _connString = "Server=localhost;Database=oregon;User=sa;Password=@Fish123;TrustServerCertificate=True;";
+    private static String _connString = "";
     private static Vector3 _clearColor = new(0.45f, 0.55f, 0.6f);
+
+    public static string db = "";
+    public static string host = "";
+    public static string port = "";
+    public static string user = "";
+    public static string password = "";
+    private static bool trustServer = false;
+
+    private static IHost? serverHost;
+    private static Thread? serverThread;
 
     /*
      * dotnet ef migrations add migration_name -- --migrate
@@ -32,17 +44,12 @@ class Program
      */
     private static void Main(string[] args)
     {
+        InitConfig();
         if (args.Contains("migrate"))
         {
             CreateHostBuilder(args).Build().Run();
             return;
         }
-        var host = CreateHostBuilder(args).Build();
-        var thread = new Thread(() =>
-        {
-            host.Run();
-        });
-        thread.Start();
         
         VeldridStartup.CreateWindowAndGraphicsDevice(
             new WindowCreateInfo(50, 50, 800, 400, WindowState.Normal, "Oregon - Backend"),
@@ -58,8 +65,14 @@ class Program
         
         _window.Closed += () =>
         {
-            host.StopAsync().Wait();
-            thread.Join();
+            if (serverHost != null)
+            {
+                serverHost.StopAsync().Wait();
+            }
+            if (serverThread != null)
+            {
+                serverThread.Join();
+            }
         };
 
         _cl = _gd.ResourceFactory.CreateCommandList();
@@ -144,6 +157,75 @@ class Program
     private static unsafe void RenderUI()
     {
         ImGui.SeparatorText("Controls");
-        ImGui.Text("Work in progress...");
+        ImGui.InputText("Database", ref db, 100);
+        ImGui.InputText("User", ref user, 100);
+        ImGui.InputText("Password", ref password, 100);
+        ImGui.InputText("Host", ref host, 100);
+        ImGui.Checkbox("Trust Server Certificate", ref trustServer);
+        if (ImGui.Button("Connect"))
+        {
+            SaveConfig();
+            _connString = $"Server={host};Database={db};User={user};Password={password};TrustServerCertificate={trustServer};";
+            serverHost = CreateHostBuilder(null).Build();
+            serverThread= new Thread(() =>
+            {
+                serverHost.Run();
+            });
+            serverThread.Start();
+        }
+    }
+
+    private static void SaveConfig()
+    { 
+        var config = new Config()
+        {
+            Database = new types.Database()
+            {
+                Db = db,
+                Host = host,
+                Port = port,
+                User = user,
+                Password = password,
+                TrustServerCertificate = trustServer
+            },
+            JwtSecret = ""
+        };
+
+        var jsonString = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText("config.json", jsonString);
+    }
+
+    private static void InitConfig()
+    {
+        if (!File.Exists("config.json"))
+        {
+            var config = new Config()
+            {
+                Database = new types.Database()
+                {
+                    Db = "",
+                    Host = "",
+                    Port = "",
+                    User = "",
+                    Password = "",
+                    TrustServerCertificate = false
+                },
+                JwtSecret = ""
+            };
+            var jsonString = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText("config.json", jsonString);
+        }
+        else
+        {
+            var json = File.ReadAllText("config.json");
+            var config = JsonSerializer.Deserialize<Config>(json);
+            _connString = $"Server={config.Database.Host};Database={config.Database.Db};User={config.Database.User};Password={config.Database.Password};TrustServerCertificate={config.Database.TrustServerCertificate};";
+            db = config.Database.Db;
+            host = config.Database.Host;
+            port = config.Database.Port;
+            user = config.Database.User;
+            password = config.Database.Password;
+            trustServer = config.Database.TrustServerCertificate;
+        }
     }
 }
