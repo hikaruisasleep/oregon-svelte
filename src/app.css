@@ -12,3 +12,19 @@ p,
 a {
 	user-select: none;
 }
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+	display: none;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+	background: #ccc;
+	border-radius: 5px;
+}
