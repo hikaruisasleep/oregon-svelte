@@ -28,12 +28,14 @@ class Program
     private static String _connString = "";
     private static Vector3 _clearColor = new(0.45f, 0.55f, 0.6f);
 
-    public static string db = "";
-    public static string host = "";
-    public static string port = "";
-    public static string user = "";
-    public static string password = "";
+    private static string db = "";
+    private static string host = "";
+    private static string port = "";
+    private static string user = "";
+    private static string password = "";
+    private static bool connectedPopupShown = false;
     private static bool trustServer = false;
+
 
     private static IHost? serverHost;
     private static Thread? serverThread;
@@ -172,6 +174,23 @@ class Program
                 serverHost.Run();
             });
             serverThread.Start();
+            connectedPopupShown = true;
+        }
+
+        if (connectedPopupShown)
+        {
+            ImGui.OpenPopup("Connected");
+        }
+
+        if (ImGui.BeginPopupModal("Connected", ImGuiWindowFlags.AlwaysAutoResize))
+        {
+            ImGui.Text("Server has been started.");
+            if (ImGui.Button("OK"))
+            {
+                ImGui.CloseCurrentPopup();
+                connectedPopupShown = false;
+            }
+            ImGui.EndPopup();
         }
     }
 
