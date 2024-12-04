@@ -41,6 +41,7 @@ public class Product: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post()
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         using var reader = new StreamReader(Request.Body);
         var bodyStr = await reader.ReadToEndAsync();
         var product = JsonSerializer.Deserialize<ProductAddRequest>(bodyStr, new JsonSerializerOptions
@@ -68,6 +69,7 @@ public class Product: ControllerBase
             Name = product.Name,
             Price = product.Price,
             Description = product.Description,
+            UserId = userId,
             ImageUrl = product.ImageUrl,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now

@@ -46,6 +46,7 @@ public class Cart: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post()
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var bodyStr = await new StreamReader(Request.Body).ReadToEndAsync();
         var cart = JsonSerializer.Deserialize<CartAddRequest>(bodyStr);
         
@@ -61,7 +62,7 @@ public class Cart: ControllerBase
         
         var cartModel = new Models.Cart()
         {
-            UserId = cart.UserId,
+            UserId = userId,
             ProductId = cart.ProductId,
             Quantity = cart.Quantity,
             CreatedAt = DateTime.Now,

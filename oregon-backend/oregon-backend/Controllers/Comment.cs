@@ -37,6 +37,7 @@ public class Comment: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post()
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var bodyStr = await new StreamReader(Request.Body).ReadToEndAsync();
         var body = JsonSerializer.Deserialize<CommentAddRequest>(bodyStr);
         
@@ -45,14 +46,14 @@ public class Comment: ControllerBase
             return BadRequest();
         }
         
-        if (body.UserId == 0 || body.ProductId == 0 || body.Content.Length == 0 || body.Rating == 0)
+        if (userId == 0 || body.ProductId == 0 || body.Content.Length == 0 || body.Rating == 0)
         {
             return BadRequest();
         }
         
         var comment = new Models.Comment()
         {
-            UserId = body.UserId,
+            UserId = userId,
             ProductId = body.ProductId,
             Content = body.Content,
             CreatedAt = DateTime.Now,
@@ -61,7 +62,7 @@ public class Comment: ControllerBase
 
         var rating = new Models.Rating()
         {
-            UserId = body.UserId,
+            UserId = userId,
             ProductId = body.ProductId,
             Value = body.Rating,
             CreatedAt = DateTime.Now,
