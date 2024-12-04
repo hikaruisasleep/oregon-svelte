@@ -20,18 +20,26 @@ public class Cart: ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var carts = await _context.Carts.ToListAsync();
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
+        var carts = await _context.Carts.Where(c => c.UserId == userId).ToListAsync();
         return Ok(carts);
     }
     
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var cart = await _context.Carts.FindAsync(id);
         if (cart == null)
         {
             return NotFound();
         }
+
+        if (cart.UserId != userId)
+        {
+            return Unauthorized();
+        }
+
         return Ok(cart);
     }
     
@@ -74,6 +82,7 @@ public class Cart: ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var bodyStr = await new StreamReader(Request.Body).ReadToEndAsync();
         var cart = JsonSerializer.Deserialize<CartUpdateRequest>(bodyStr);
         
@@ -87,7 +96,12 @@ public class Cart: ControllerBase
         {
             return NotFound();
         }
-        
+
+        if (cartModel.UserId != userId)
+        {
+            return Unauthorized();
+        }
+
         if (cart.Quantity <= 0)
         {
             return BadRequest();
@@ -109,12 +123,18 @@ public class Cart: ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var cart = await _context.Carts.FindAsync(id);
         if (cart == null)
         {
             return NotFound();
         }
-        
+
+        if (cart.UserId != userId)
+        {
+            return Unauthorized();
+        }
+
         _context.Carts.Remove(cart);
         await _context.SaveChangesAsync();
         

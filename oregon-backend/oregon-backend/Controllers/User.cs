@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using oregon_backend.Models;
@@ -21,7 +22,16 @@ public class User: ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var users = await _context.Users.ToListAsync();
+        var users = await _context.Users.Select(u => new
+        {
+            u.Id,
+            u.Username,
+            u.Email,
+            u.ProfileUrl,
+            u.CreatedAt,
+            u.UpdatedAt
+        }).ToListAsync();
+
         return Ok(users);
     }   
     
@@ -37,6 +47,7 @@ public class User: ControllerBase
     }
     
     [HttpPost("register")]
+    [AllowAnonymous]
     public async Task<IActionResult> Register()
     {
         using var reader = new StreamReader(Request.Body);
@@ -107,6 +118,7 @@ public class User: ControllerBase
     }
     
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login()
     {
         using var reader = new StreamReader(Request.Body);
@@ -156,12 +168,18 @@ public class User: ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         if (user == null)
         {
             return NotFound();
         }
-        
+
+        if (user.Id != userId)
+        {
+            return Unauthorized();
+        }
+
         using var reader = new StreamReader(Request.Body);
         var bodyStr = await reader.ReadToEndAsync();
         var userUpdate = JsonSerializer.Deserialize<UserUpdate>(bodyStr, new JsonSerializerOptions
@@ -204,12 +222,18 @@ public class User: ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         if (user == null)
         {
             return NotFound();
         }
-        
+
+        if (user.Id != userId)
+        {
+            return Unauthorized();
+        }
+
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
         

@@ -10,4 +10,8 @@ public class User
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public DateTime? DeletedAt { get; set; }
+
+    public List<Rating> Ratings { get; set; }
+    public List<Comment> Comments { get; set; }
+    public List<Cart> Carts { get; set; }
 }

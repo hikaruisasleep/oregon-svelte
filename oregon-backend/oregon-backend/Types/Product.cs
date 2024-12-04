@@ -16,6 +16,13 @@ public class ProductUpdateRequest
     public string ImageUrl { get; set; }
 }
 
+public class ProductAddRatingRequest
+{
+    public int UserId { get; set; }
+    public int ProductId { get; set; }
+    public int Value { get; set; }
+}
+
 public class ProductAddResponse
 {
     public string Message { get; set; }
@@ -27,6 +34,11 @@ public class ProductUpdateResponse
 }
 
 public class ProductDeleteResponse
+{
+    public string Message { get; set; }
+}
+
+public class ProductAddRatingResponse
 {
     public string Message { get; set; }
 }
