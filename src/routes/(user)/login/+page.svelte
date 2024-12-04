@@ -6,7 +6,7 @@
 </header>
 
 <div class="flex h-svh flex-col justify-center gap-12 px-4 pb-16">
-	<h1>Login to 0regon</h1>
+	<h1>Login ke 0regon</h1>
 	<form method="post" class="flex flex-col justify-center gap-4">
 		<div class="flex flex-col">
 			<label for="email">Email</label>
@@ -22,4 +22,6 @@
 			class="w-fit self-center rounded-xl bg-violet-400 px-10 font-semibold text-white"
 		/>
 	</form>
+
+	<p>Belum punya akun? <a href="/register" class="text-violet-700">Register!</a></p>
 </div>

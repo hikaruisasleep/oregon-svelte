@@ -6,7 +6,7 @@
 </header>
 
 <div class="flex h-svh flex-col justify-center gap-12 px-4 pb-16">
-	<h1>Register a new account</h1>
+	<h1>Registrasi akun baru</h1>
 	<form action="" method="post" class="flex flex-col justify-center gap-4">
 		<div class="flex flex-col">
 			<label for="email">Email</label>
@@ -30,4 +30,6 @@
 			class="w-fit self-center rounded-xl bg-violet-400 px-8 font-semibold text-white"
 		/>
 	</form>
+
+	<p>Sudah punya akun? <a href="/login" class="text-violet-700">Login!</a></p>
 </div>
