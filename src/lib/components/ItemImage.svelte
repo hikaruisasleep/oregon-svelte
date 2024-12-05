@@ -27,5 +27,5 @@
 		<i class="fa-solid fa-plus fa-2xl leading-normal"></i>
 		Tambahkan foto produk
 	</div>
-	<img class:hidden={!hasImage} src={previewSrc} />
+	<img class:hidden={!hasImage} src={previewSrc} alt="product" />
 </label>
