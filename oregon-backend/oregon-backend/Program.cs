@@ -46,13 +46,9 @@ class Program
      */
     private static void Main(string[] args)
     {
+        if (args.Contains("migrate")) return;
         InitConfig();
-        if (args.Contains("migrate"))
-        {
-            CreateHostBuilder(args).Build().Run();
-            return;
-        }
-        
+
         VeldridStartup.CreateWindowAndGraphicsDevice(
             new WindowCreateInfo(50, 50, 800, 400, WindowState.Normal, "Oregon - Backend"),
             new GraphicsDeviceOptions(true, null, true, ResourceBindingModel.Improved, true, true),
@@ -119,6 +115,10 @@ class Program
 
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
+        if (_connString == "")
+        {
+            InitConfig();
+        }
         var host = Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
