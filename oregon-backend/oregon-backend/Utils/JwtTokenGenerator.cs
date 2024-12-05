@@ -11,7 +11,7 @@ public class JwtTokenGenerator
     static readonly string _issuer = "Oregon";
     static readonly string _audience = "Oregon";
 
-    public static string GenerateToken(string userId, string username)
+    public static string GenerateToken(string userId, string username, int role)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -20,7 +20,8 @@ public class JwtTokenGenerator
         {
             new Claim(JwtRegisteredClaimNames.Sub, userId),
             new Claim(JwtRegisteredClaimNames.UniqueName, username),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.Role, role.ToString())
         };
 
         var token = new JwtSecurityToken(

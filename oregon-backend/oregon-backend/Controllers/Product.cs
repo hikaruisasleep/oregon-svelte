@@ -39,6 +39,7 @@ public class Product: ControllerBase
     }
     
     [HttpPost]
+    [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> Post()
     {
         var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
@@ -87,6 +88,7 @@ public class Product: ControllerBase
     }
     
     [HttpPut("{id}")]
+    [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> Put(int id)
     {
         var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
@@ -118,11 +120,6 @@ public class Product: ControllerBase
             return NotFound();
         }
 
-        if (existingProduct.UserId != userId)
-        {
-            return Unauthorized();
-        }
-
         existingProduct.Name = product.Name;
         existingProduct.Price = product.Price;
         existingProduct.Description = product.Description;
@@ -140,6 +137,7 @@ public class Product: ControllerBase
     }
     
     [HttpDelete("{id}")]
+    [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> Delete(int id)
     {
         var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());

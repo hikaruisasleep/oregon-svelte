@@ -20,6 +20,7 @@ public class Comment: ControllerBase
     
     [HttpGet]
     [AllowAnonymous]
+    [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> GetAll()
     {
         var comments = await _context.Comments.ToListAsync();

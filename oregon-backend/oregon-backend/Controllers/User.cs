@@ -20,6 +20,7 @@ public class User: ControllerBase
     }
     
     [HttpGet]
+    [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> GetAll()
     {
         var users = await _context.Users.Select(u => new
@@ -99,6 +100,7 @@ public class User: ControllerBase
             Password = hashedPassword,
             Email = registerRequest.Email,
             ProfileUrl = "",
+            Role = 0,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow,
         };
@@ -106,7 +108,7 @@ public class User: ControllerBase
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
         
-        var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username);
+        var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username, user.Role);
         
         var registerResponse = new RegisterResponse
         {
@@ -154,7 +156,7 @@ public class User: ControllerBase
             return BadRequest("Invalid password");
         }
         
-        var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username);
+        var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username, user.Role);
         
         var loginResponse = new LoginResponse
         {
