@@ -12,6 +12,7 @@ public class Product
     public DateTime UpdatedAt { get; set; }
     public DateTime? DeletedAt { get; set; }
 
+    public User User { get; set; }
     public List<Rating> Ratings { get; set; }
     public List<Comment> Comments { get; set; }
 }

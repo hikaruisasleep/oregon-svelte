@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "D:\\Projects\\oregon-svelte\\oregon-backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\roleauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\roleauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\models\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\models\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\types\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\types\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\types\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\types\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\middleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\middleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\types\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\types\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\types\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,36 +67,8 @@
       "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\types\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\types\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\types\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\controllers\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\controllers\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\middleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|solutionrelative:oregon-backend\\middleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C56E15B-D0FB-4990-B385-5B6236A323B5}|oregon-backend\\oregon-backend.csproj|d:\\projects\\oregon-svelte\\oregon-backend\\oregon-backend\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,11 +82,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "RoleAuthorizationAttribute.cs",
+              "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\RoleAuthorizationAttribute.cs",
+              "RelativeDocumentMoniker": "oregon-backend\\RoleAuthorizationAttribute.cs",
+              "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\RoleAuthorizationAttribute.cs",
+              "RelativeToolTip": "oregon-backend\\RoleAuthorizationAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T02:13:40.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Rating.cs",
+              "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Models\\Rating.cs",
+              "RelativeDocumentMoniker": "oregon-backend\\Models\\Rating.cs",
+              "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Models\\Rating.cs",
+              "RelativeToolTip": "oregon-backend\\Models\\Rating.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T02:06:33.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Config.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Types\\Config.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Types\\Config.cs",
@@ -90,38 +120,24 @@
               "RelativeToolTip": "oregon-backend\\Types\\Config.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T04:13:33.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T04:13:33.392Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Program.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Program.cs",
               "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Program.cs",
               "RelativeToolTip": "oregon-backend\\Program.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAqwMMAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAgwK0AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T03:56:23.17Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Models\\User.cs",
-              "RelativeDocumentMoniker": "oregon-backend\\Models\\User.cs",
-              "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Models\\User.cs",
-              "RelativeToolTip": "oregon-backend\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T03:43:07.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 8,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Types\\User.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Types\\User.cs",
@@ -134,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "Register.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Types\\Register.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Types\\Register.cs",
@@ -142,12 +158,11 @@
               "RelativeToolTip": "oregon-backend\\Types\\Register.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T03:43:00.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T03:43:00.816Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Types\\Product.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Types\\Product.cs",
@@ -155,12 +170,11 @@
               "RelativeToolTip": "oregon-backend\\Types\\Product.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T03:42:41.231Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T03:42:41.231Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "Login.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Types\\Login.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Types\\Login.cs",
@@ -168,12 +182,11 @@
               "RelativeToolTip": "oregon-backend\\Types\\Login.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T03:42:38.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T03:42:38.835Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "Cart.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Types\\Cart.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Types\\Cart.cs",
@@ -181,12 +194,11 @@
               "RelativeToolTip": "oregon-backend\\Types\\Cart.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T03:42:21.779Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T03:42:21.779Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Cart.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Models\\Cart.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Models\\Cart.cs",
@@ -194,25 +206,24 @@
               "RelativeToolTip": "oregon-backend\\Models\\Cart.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T03:30:30.923Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T03:30:30.923Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "Cart.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\Cart.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Controllers\\Cart.cs",
               "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\Cart.cs",
               "RelativeToolTip": "oregon-backend\\Controllers\\Cart.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAcwBIAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T03:28:32.833Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 3,
               "Title": "Payment.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\Payment.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Controllers\\Payment.cs",
@@ -225,46 +236,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 9,
               "Title": "Middleware.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Middleware.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Middleware.cs",
               "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Middleware.cs",
               "RelativeToolTip": "oregon-backend\\Middleware.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAuwBgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAYwE0AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T03:06:00.817Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\User.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Controllers\\User.cs",
               "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\User.cs",
               "RelativeToolTip": "oregon-backend\\Controllers\\User.cs",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAcwHQAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAANgAAAAAAAAAAAAmwCYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T03:02:51.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 2,
               "Title": "Comment.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\Comment.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Controllers\\Comment.cs",
               "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\Comment.cs",
               "RelativeToolTip": "oregon-backend\\Controllers\\Comment.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAIwEQAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAcwIsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T02:41:39.361Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Comment.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Models\\Comment.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Models\\Comment.cs",
@@ -272,12 +283,11 @@
               "RelativeToolTip": "oregon-backend\\Models\\Comment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T02:41:36.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T02:41:36.129Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "Comment.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Types\\Comment.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Types\\Comment.cs",
@@ -285,18 +295,17 @@
               "RelativeToolTip": "oregon-backend\\Types\\Comment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T02:41:01.829Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T02:41:01.829Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\Product.cs",
               "RelativeDocumentMoniker": "oregon-backend\\Controllers\\Product.cs",
               "ToolTip": "D:\\Projects\\oregon-svelte\\oregon-backend\\oregon-backend\\Controllers\\Product.cs",
               "RelativeToolTip": "oregon-backend\\Controllers\\Product.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAAAEkAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T02:33:15.377Z",
               "EditorCaption": ""

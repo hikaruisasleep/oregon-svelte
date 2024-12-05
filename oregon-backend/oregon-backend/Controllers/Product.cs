@@ -25,19 +25,60 @@ public class Product: ControllerBase
         var products = await _context.Products.ToListAsync();
         return Ok(products);
     }
-    
+
     [HttpGet("{id}")]
     [AllowAnonymous]
     public async Task<IActionResult> Get(int id)
     {
-        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        var product = await _context.Products
+            .Include(p => p.Comments)
+            .Include(p => p.User)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
         if (product == null)
         {
             return NotFound();
         }
-        return Ok(product);
+
+        var averageRating = await _context.Ratings
+            .Where(r => r.ProductId == id)
+            .AverageAsync(r => (double?)r.Value) ?? 0;
+
+        var response = new
+        {
+            Product = new
+            {
+                product.Id,
+                product.Name,
+                product.Description,
+                product.ImageUrl,
+                product.Price,
+                product.UserId,
+                product.CreatedAt,
+                product.UpdatedAt,
+                Comments = product.Comments.Select(c => new
+                {
+                    c.Id,
+                    c.UserId,
+                    c.ProductId,
+                    c.Content,
+                    c.CreatedAt,
+                    c.UpdatedAt
+                }),
+                User = new
+                {
+                    product.User.Id,
+                    product.User.Username,
+                    product.User.Role,
+                    product.User.ProfileUrl,
+                }
+            },
+            AverageRating = averageRating
+        };
+
+        return Ok(response);
     }
-    
+
     [HttpPost]
     [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> Post()
