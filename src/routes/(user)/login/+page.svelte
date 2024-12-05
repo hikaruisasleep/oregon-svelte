@@ -1,3 +1,9 @@
+<script lang="ts">
+	import type { ActionData } from './$types';
+
+	let { form }: { form: ActionData } = $props();
+</script>
+
 <header class="flex h-16 w-full flex-row items-center justify-between px-6 shadow-md">
 	<a href="/"><h1 class="font-serif text-2xl text-violet-700 md:text-3xl">0regon</h1></a>
 	<div>
@@ -7,6 +13,10 @@
 
 <div class="flex h-svh flex-col justify-center gap-12 px-4 pb-16">
 	<h1>Login ke 0regon</h1>
+	{#if form}
+		<p>email: {form.email}</p>
+		<p>password: {form.password}</p>
+	{/if}
 	<form method="post" class="flex flex-col justify-center gap-4">
 		<div class="flex flex-col">
 			<label for="email">Email</label>
