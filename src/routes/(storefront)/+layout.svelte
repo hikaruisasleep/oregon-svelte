@@ -10,9 +10,11 @@
 	<title>0regon</title>
 </svelte:head>
 
-<div class="flex h-auto w-svw flex-col content-center items-center overflow-hidden">
+<div class="flex h-auto w-svw flex-col content-center items-center overflow-visible">
 	<div class="m-0 flex h-full w-full flex-col p-0 md:w-[480px]">
-		<header class="flex h-16 w-full flex-row items-center justify-between px-6 shadow-md">
+		<header
+			class="sticky top-0 z-10 flex h-16 w-full flex-row items-center justify-between bg-white px-6 shadow-md"
+		>
 			<a href="/"><h1 class="font-serif text-2xl text-violet-700 md:text-3xl">0regon</h1></a>
 			<div class:hidden={!loggedIn}>
 				<button
