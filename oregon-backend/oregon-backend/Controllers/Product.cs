@@ -40,6 +40,9 @@ public class Product: ControllerBase
             return NotFound();
         }
 
+        product.PageView += 1;
+        await _context.SaveChangesAsync();
+
         var averageRating = await _context.Ratings
             .Where(r => r.ProductId == id)
             .AverageAsync(r => (double?)r.Value) ?? 0;
@@ -54,6 +57,7 @@ public class Product: ControllerBase
                 product.ImageUrl,
                 product.Price,
                 product.UserId,
+                product.PageView,
                 product.CreatedAt,
                 product.UpdatedAt,
                 Comments = product.Comments.Select(c => new
