@@ -22,4 +22,5 @@ public class User
     public List<Rating> Ratings { get; set; }
     public List<Comment> Comments { get; set; }
     public List<Cart> Carts { get; set; }
+    public List<Product> Products { get; set; }
 }

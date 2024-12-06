@@ -113,6 +113,7 @@ public class Product: ControllerBase
             Description = product.Description,
             UserId = userId,
             ImageUrl = product.ImageUrl,
+            PageView = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now
         };
