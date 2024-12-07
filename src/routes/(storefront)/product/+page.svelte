@@ -80,7 +80,7 @@
 </div>
 
 <div
-	class="fixed bottom-0 flex h-12 w-full flex-row items-center justify-evenly gap-1 bg-violet-400 text-white"
+	class="fixed bottom-0 flex h-12 w-full flex-row items-center justify-evenly gap-1 bg-violet-400 text-white md:w-[480px]"
 >
 	<button aria-label="chat seller"><i class="fa-regular fa-comments"></i></button>
 	<span class="mx-1 inline-block h-4/5 w-[1px] bg-violet-500 drop-shadow"></span>
