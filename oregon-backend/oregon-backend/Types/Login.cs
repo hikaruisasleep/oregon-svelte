@@ -9,5 +9,6 @@ public class LoginRequest
 public class LoginResponse
 {
     public string Status { get; set; }
+    public int? UserId { get; set; }
     public string Token { get; set; }
 }
