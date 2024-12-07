@@ -18,7 +18,7 @@ public class RoleAuthorizeAttribute : Attribute, IAuthorizationFilter
         var role = context.HttpContext.Items["Role"]?.ToString();
         if (role != _role)
         {
-            context.Result = new StatusCodeResult(StatusCodes.Status401Unauthorized);
+            context.Result = new StatusCodeResult(StatusCodes.Status403Forbidden);
         }
     }
 }
