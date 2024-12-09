@@ -3,6 +3,8 @@
 	let previewSrc = $state('');
 	let imageBase64Data = $state('');
 
+	let { existingImage = '' } = $props();
+
 	function onchange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		if (target.files) {
@@ -15,6 +17,11 @@
 				imageBase64Data = fileReader.result;
 			};
 		}
+	}
+
+	if (existingImage != '') {
+		hasImage = true;
+		previewSrc = existingImage;
 	}
 </script>
 

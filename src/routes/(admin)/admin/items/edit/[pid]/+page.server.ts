@@ -1,16 +1,20 @@
 import { API } from '$env/static/private';
-import { error, type Actions } from '@sveltejs/kit';
+import { error, redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from '../$types';
 
 export const actions = {
 	delete: async (action) => {
+		const requestHeaders = new Headers();
+		requestHeaders.append('Authorization', `${action.cookies.get('session_token')}`);
+
 		const deleteRequest = await fetch(`${API}/product/${action.params.pid}`, {
-			method: 'DELETE'
+			method: 'DELETE',
+			headers: requestHeaders
 		});
 		const deleteResponse = await deleteRequest.json();
 
 		if (deleteResponse.ok) {
-			return deleteResponse;
+			redirect(302, '/admin/items');
 		} else {
 			error(500, JSON.stringify(deleteResponse));
 		}

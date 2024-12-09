@@ -2,7 +2,7 @@
 	let { product } = $props();
 </script>
 
-<a href="/product">
+<a href="/product/{product.id}">
 	<div
 		class="grid h-72 w-40 flex-shrink-0 flex-grow-0 grid-cols-1 grid-rows-7 rounded border border-black"
 	>
@@ -13,7 +13,7 @@
 		{/if}
 		<div class="row-span-3 flex flex-col justify-between px-3 py-3 shadow-inner">
 			<div>
-				<p class="font-light">{product.name}</p>
+				<p class="truncate font-light">{product.name}</p>
 				<p class="font-medium text-indigo-600">
 					Rp{product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.')}
 				</p>

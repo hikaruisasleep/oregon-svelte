@@ -47,8 +47,6 @@ export const actions = {
 			imageUrl
 		};
 
-		console.log(JSON.stringify(formJson));
-
 		const requestHeaders = new Headers();
 		requestHeaders.append('Authorization', `${action.cookies.get('session_token')}`);
 
@@ -63,11 +61,7 @@ export const actions = {
 
 			console.log(JSON.stringify(result));
 
-			if (result.status == 'Success') {
-			}
 			return result;
-		} else {
-			return {};
 		}
 	}
 } satisfies Actions;
