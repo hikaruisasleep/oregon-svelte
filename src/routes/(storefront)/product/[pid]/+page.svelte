@@ -6,7 +6,7 @@
 
 	let { data }: { data: PageData } = $props();
 
-	let descriptionBoxHeight = $state(0);
+	let descriptionBoxHeight = $state();
 	let needsExpansion = $state(false);
 	onMount(() => {
 		if (descriptionBoxHeight >= 128) {
@@ -15,7 +15,11 @@
 	});
 	let expandDescription = $state(false);
 
-	let product = data.productResult.product;
+	let product = $state(data.productResult.product);
+
+	$effect(() => {
+		product = data.productResult.product;
+	});
 </script>
 
 {#if product.imageUrl != ''}
@@ -119,6 +123,7 @@
 
 	.expanded {
 		@apply h-max;
+		@apply max-h-max;
 		@apply overflow-auto;
 	}
 </style>
