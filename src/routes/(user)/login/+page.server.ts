@@ -15,12 +15,11 @@ export const actions = {
 		});
 
 		if (request.ok) {
-			const result: { status: string; token: string } = JSON.parse(
-				JSON.stringify(await request.json())
-			);
+			const result: { status: string; userId: string; token: string } = await request.json();
 
 			if (result.status == 'Success') {
 				action.cookies.set('session_token', result.token, { path: '/' });
+				action.cookies.set('user_id', result.userId, { path: '/' });
 			}
 
 			return result;

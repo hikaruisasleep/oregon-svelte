@@ -1,5 +1,8 @@
 <script lang="ts">
 	import ItemImage from '$lib/components/ItemImage.svelte';
+	import type { ActionData } from '../$types';
+
+	let { form }: { form: ActionData } = $props();
 </script>
 
 <div class="add-product m-4 flex flex-col items-center">
@@ -25,6 +28,10 @@
 			class="mt-10 w-fit self-center rounded-full bg-green-900 px-4 py-2 text-white"
 		/>
 	</form>
+
+	{#if form?.errored}
+		{JSON.stringify(form)}
+	{/if}
 </div>
 
 <style>
