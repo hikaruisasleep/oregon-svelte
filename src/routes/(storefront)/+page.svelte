@@ -2,6 +2,10 @@
 	import ItemCard from '$lib/components/ItemCard.svelte';
 	import CategoryCard from '$lib/components/CategoryCard.svelte';
 	import LocationCard from '$lib/components/LocationCard.svelte';
+
+	import type { LayoutData } from './$types';
+
+	let { data }: { data: LayoutData } = $props();
 </script>
 
 <div
@@ -20,13 +24,9 @@
 <div class="recommended m-4">
 	<h3 class="mb-4 text-xl">Rekomendasi untukmu</h3>
 	<div class="recommended-items flex flex-row gap-2 overflow-scroll">
-		<ItemCard></ItemCard>
-		<ItemCard></ItemCard>
-		<ItemCard></ItemCard>
-		<ItemCard></ItemCard>
-		<ItemCard></ItemCard>
-		<ItemCard></ItemCard>
-		<ItemCard></ItemCard>
+		{#each data.allProducts as product}
+			<ItemCard {product} />
+		{/each}
 	</div>
 </div>
 

@@ -1,5 +1,6 @@
 <script>
-	let { product } = $props();
+	let props = $props();
+	let product = props.product;
 </script>
 
 <div
@@ -17,10 +18,5 @@
 				Rp{product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.')}
 			</p>
 		</div>
-	</div>
-	<div class="col-span-1 flex flex-col justify-around px-5 py-3 text-right">
-		<a href="/admin/items/edit/{product.id}" class="text-blue-700">
-			<i class="fa-solid fa-pen-to-square fa-lg leading-normal"></i> Edit
-		</a>
 	</div>
 </div>

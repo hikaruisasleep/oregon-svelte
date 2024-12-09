@@ -18,7 +18,7 @@
 	</div>
 	<div class="products-items flex w-full flex-col gap-2">
 		{#each data.allProducts as product}
-			<p>{product}</p>
+			<p><EditableItemCard {product} /></p>
 		{/each}
 	</div>
 </div>
