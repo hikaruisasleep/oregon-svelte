@@ -1,20 +1,20 @@
-﻿using System.Diagnostics;
-using System.Numerics;
-using ImGuiNET;
+﻿using ImGuiNET;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using oregon_backend.Models;
+using oregon_backend.types;
+using System.Diagnostics;
+using System.Numerics;
+using System.Text;
+using System.Text.Json;
 using Veldrid;
 using Veldrid.Sdl2;
 using Veldrid.StartupUtilities;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using System.Text.Json;
-using oregon_backend.types;
 
 namespace oregon_backend;
 
@@ -24,7 +24,7 @@ class Program
     private static GraphicsDevice _gd;
     private static ImGuiController _controller;
     private static CommandList _cl;
-    
+
     private static String _connString = "";
     private static Vector3 _clearColor = new(0.45f, 0.55f, 0.6f);
 
@@ -49,27 +49,30 @@ class Program
         if (args.Contains("migrate")) return;
         InitConfig();
 
-        if (args.Contains("headless")) {
+        if (args.Contains("headless"))
+        {
             _connString = $"Server={host};Database={db};User={user};Password={password};TrustServerCertificate={trustServer};";
             serverHost = CreateHostBuilder(null).Build();
-            serverThread= new Thread(() =>
+            serverThread = new Thread(() =>
             {
                 serverHost.Run();
             });
             serverThread.Start();
-        } else {
+        }
+        else
+        {
             VeldridStartup.CreateWindowAndGraphicsDevice(
             new WindowCreateInfo(50, 50, 800, 400, WindowState.Normal, "Oregon - Backend"),
             new GraphicsDeviceOptions(true, null, true, ResourceBindingModel.Improved, true, true),
             out _window,
             out _gd);
-        
+
             _window.Resized += () =>
             {
                 _gd.MainSwapchain.Resize((uint)_window.Width, (uint)_window.Height);
                 _controller.WindowResized(_window.Width, _window.Height);
             };
-            
+
             _window.Closed += () =>
             {
                 if (serverHost != null)
@@ -87,7 +90,7 @@ class Program
 
             var stopwatch = Stopwatch.StartNew();
             var deltaTime = 0f;
-            
+
             while (_window.Exists)
             {
                 ImGui.SetNextWindowPos(new Vector2(0, 0));
@@ -101,14 +104,14 @@ class Program
                 ImGui.SetNextWindowSize(new Vector2(_window.Width, _window.Height), ImGuiCond.Always);
                 var windowFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoTitleBar;
 
-                ImGui.Begin("Oregon", windowFlags); 
+                ImGui.Begin("Oregon", windowFlags);
                 RenderUI();
-                
+
                 _cl.Begin();
                 _cl.SetFramebuffer(_gd.MainSwapchain.Framebuffer);
-                
+
                 _cl.ClearColorTarget(0, new RgbaFloat(_clearColor.X, _clearColor.Y, _clearColor.Z, 1f));
-                
+
                 _controller.Render(_gd, _cl);
 
                 _cl.End();
@@ -165,7 +168,7 @@ class Program
             });
         return host;
     }
-    
+
     private static unsafe void RenderUI()
     {
         ImGui.SeparatorText("Controls");
@@ -179,7 +182,7 @@ class Program
             SaveConfig();
             _connString = $"Server={host};Database={db};User={user};Password={password};TrustServerCertificate={trustServer};";
             serverHost = CreateHostBuilder(null).Build();
-            serverThread= new Thread(() =>
+            serverThread = new Thread(() =>
             {
                 serverHost.Run();
             });
@@ -205,7 +208,7 @@ class Program
     }
 
     private static void SaveConfig()
-    { 
+    {
         var config = new Config()
         {
             Database = new types.Database()

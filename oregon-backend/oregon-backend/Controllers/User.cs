@@ -1,16 +1,16 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using oregon_backend.Models;
 using oregon_backend.types;
 using oregon_backend.Utils;
+using System.Text.Json;
 
 namespace oregon_backend.Controllers;
 
 [Route("api/user")]
 [ApiController]
-public class User: ControllerBase
+public class User : ControllerBase
 {
     private readonly ApplicationDbContext _context;
 
@@ -18,7 +18,7 @@ public class User: ControllerBase
     {
         _context = context;
     }
-    
+
     [HttpGet]
     [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> GetAll()
@@ -34,8 +34,8 @@ public class User: ControllerBase
         }).ToListAsync();
 
         return Ok(users);
-    }   
-    
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
@@ -46,7 +46,7 @@ public class User: ControllerBase
         }
         return Ok(user);
     }
-    
+
     [HttpPost("register")]
     [AllowAnonymous]
     public async Task<IActionResult> Register()
@@ -62,22 +62,22 @@ public class User: ControllerBase
         {
             return BadRequest("Invalid request");
         }
-        
+
         if (string.IsNullOrEmpty(registerRequest.Email))
         {
             return BadRequest("Email is required");
         }
-        
+
         if (string.IsNullOrEmpty(registerRequest.Password))
         {
             return BadRequest("Password is required");
         }
-        
+
         if (string.IsNullOrEmpty(registerRequest.Username))
         {
             return BadRequest("Username is required");
         }
-        
+
         if (string.IsNullOrEmpty(registerRequest.Name))
         {
             return BadRequest("Name is required");
@@ -87,18 +87,19 @@ public class User: ControllerBase
         {
             return BadRequest("User already exists");
         }
-        
+
         var hashedPassword = BCrypt.Net.BCrypt.HashPassword(registerRequest.Password);
         if (string.IsNullOrEmpty(hashedPassword))
         {
             return BadRequest("Failed to hash password");
         }
-        
+
         var user = new Models.User()
         {
             Username = registerRequest.Username,
             Password = hashedPassword,
             Email = registerRequest.Email,
+            Name = registerRequest.Name,
             ProfileUrl = "",
             Role = 0,
             CreatedAt = DateTime.UtcNow,
@@ -107,24 +108,24 @@ public class User: ControllerBase
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
-            
+
         if (user.Id == 0)
         {
             return BadRequest("Failed to create user");
         }
-        
+
         var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username, user.Role);
-        
+
         var registerResponse = new RegisterResponse
         {
             Status = "Success",
             UserId = user.Id,
             Token = jwtToken
         };
-        
+
         return Ok(registerResponse);
     }
-    
+
     [HttpPost("login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login()
@@ -140,45 +141,45 @@ public class User: ControllerBase
         {
             return BadRequest("Invalid request");
         }
-        
+
         if (string.IsNullOrEmpty(loginRequest.Email))
         {
             return BadRequest("Email is required");
         }
-        
+
         if (string.IsNullOrEmpty(loginRequest.Password))
         {
             return BadRequest("Password is required");
         }
-        
+
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email);
         if (user == null)
         {
             return BadRequest("User not found");
         }
-        
+
         if (!BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password))
         {
             return BadRequest("Invalid password");
         }
-        
+
         if (user.Id == 0)
         {
             return BadRequest("Failed to login");
         }
-        
+
         var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username, user.Role);
-        
+
         var loginResponse = new LoginResponse
         {
             Status = "Success",
             UserId = user.Id,
             Token = jwtToken
         };
-        
+
         return Ok(loginResponse);
     }
-    
+
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id)
     {
@@ -205,34 +206,39 @@ public class User: ControllerBase
         {
             return BadRequest("Invalid request");
         }
-        
+
         if (!string.IsNullOrEmpty(userUpdate.Username))
         {
             user.Username = userUpdate.Username;
         }
-        
+
+        if (!string.IsNullOrEmpty(userUpdate.Name))
+        {
+            user.Name = userUpdate.Name;
+        }
+
         if (!string.IsNullOrEmpty(userUpdate.Email))
         {
             user.Email = userUpdate.Email;
         }
-        
+
         if (!string.IsNullOrEmpty(userUpdate.ProfileUrl))
         {
             user.ProfileUrl = userUpdate.ProfileUrl;
         }
-        
+
         user.UpdatedAt = DateTime.UtcNow;
-        
+
         await _context.SaveChangesAsync();
-        
+
         var userUpdateResponse = new UserUpdateResponse
         {
             Status = "Success"
         };
-        
+
         return Ok(userUpdateResponse);
     }
-    
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
@@ -250,12 +256,12 @@ public class User: ControllerBase
 
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
-        
+
         var userDeleteResponse = new UserDeleteResponse
         {
             Status = "Success"
         };
-        
+
         return Ok(userDeleteResponse);
     }
 }
