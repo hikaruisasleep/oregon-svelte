@@ -1,9 +1,19 @@
 <script lang="ts">
 	import '../../app.css';
-	let { children } = $props();
+
+	import { getContext, setContext, type Snippet } from 'svelte';
+	import type { LayoutData } from '../$types';
+	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 
 	let navigationHidden = $state(true);
-	let loggedIn = $state(false);
+
+	if (data.session_token == undefined) {
+		setContext('logged_in', false);
+	} else {
+		setContext('logged_in', true);
+	}
+
+	let loggedIn = getContext('logged_in');
 </script>
 
 <svelte:head>
@@ -26,8 +36,9 @@
 					<i class="fa-solid fa-bars fa-xl leading-normal"></i>
 				</button>
 				<div
-					class="fixed left-0 top-0 z-10 flex h-full w-full flex-shrink flex-grow-0 flex-col items-end justify-center overflow-x-hidden bg-gray-300 md:left-1/2 md:w-[480px] md:-translate-x-1/2"
-					class:hidden={navigationHidden}
+					class="fixed left-0 top-0 z-10 flex w-full flex-shrink flex-grow-0 flex-col items-end justify-center overflow-x-hidden bg-gray-300 transition-all duration-500 md:left-1/2 md:w-[480px] md:-translate-x-1/2"
+					class:h-0={navigationHidden}
+					class:h-full={!navigationHidden}
 				>
 					<button
 						aria-label="close navigation"
@@ -66,7 +77,13 @@
 							Profile
 						</a>
 					</nav>
-					<div class="h-[5%]"></div>
+					<div class="flex h-[5%] w-full flex-col items-center">
+						<form method="post" action="/?/logout">
+							<button class="rounded-lg bg-red-800 px-3 py-2 text-white" type="submit">
+								Log out
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
 			<div class:hidden={loggedIn}>

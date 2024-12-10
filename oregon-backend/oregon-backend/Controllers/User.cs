@@ -107,12 +107,18 @@ public class User: ControllerBase
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
+            
+        if (user.Id == 0)
+        {
+            return BadRequest("Failed to create user");
+        }
         
         var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username, user.Role);
         
         var registerResponse = new RegisterResponse
         {
             Status = "Success",
+            UserId = user.Id,
             Token = jwtToken
         };
         
@@ -156,11 +162,17 @@ public class User: ControllerBase
             return BadRequest("Invalid password");
         }
         
+        if (user.Id == 0)
+        {
+            return BadRequest("Failed to login");
+        }
+        
         var jwtToken = JwtTokenGenerator.GenerateToken(user.Id.ToString(), user.Username, user.Role);
         
         var loginResponse = new LoginResponse
         {
             Status = "Success",
+            UserId = user.Id,
             Token = jwtToken
         };
         

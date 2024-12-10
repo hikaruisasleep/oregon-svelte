@@ -1,13 +1,27 @@
 <script lang="ts">
 	let hasImage = $state(false);
 	let previewSrc = $state('');
+	let imageBase64Data = $state('');
+
+	let { existingImage = '' } = $props();
 
 	function onchange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		if (target.files) {
 			hasImage = true;
 			previewSrc = URL.createObjectURL(target.files[0]);
+
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(target.files[0]);
+			fileReader.onloadend = () => {
+				imageBase64Data = fileReader.result;
+			};
 		}
+	}
+
+	if (existingImage != '') {
+		hasImage = true;
+		previewSrc = existingImage;
 	}
 </script>
 
@@ -23,6 +37,7 @@
 		accept="image/jpeg,image/png,image/webp"
 		{onchange}
 	/>
+	<input type="hidden" name="imageBase64Data" value={imageBase64Data} />
 	<div class:hidden={hasImage}>
 		<i class="fa-solid fa-plus fa-2xl leading-normal"></i>
 		Tambahkan foto produk

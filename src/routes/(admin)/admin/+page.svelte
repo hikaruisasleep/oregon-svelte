@@ -1,27 +1,31 @@
 <script lang="ts">
-	import EditableItemCard from '$lib/components/EditableItemCard.svelte';
+	import UneditableItemCard from '$lib/components/UneditableItemCard.svelte';
+	import UneditableUserCard from '$lib/components/UneditableUserCard.svelte';
+	import type { LayoutData } from './$types';
+
+	let { data }: { data: LayoutData } = $props();
 </script>
 
 <div class="products m-4 flex flex-col items-center">
-	<div class="self-start">
-		<h3 class="text-xl">List produk</h3>
-	</div>
-	<div class="mb-6 mt-2 w-fit rounded-lg bg-lime-800 px-3 py-2 text-white">
-		<a href="admin/add">
-			<i class="fa-solid fa-square-plus mr-1 leading-normal"></i>
-			Tambah produk baru
-		</a>
+	<div class="mb-4 flex w-full items-end justify-between">
+		<h3 class="text-2xl">List produk</h3>
+		<a href="/admin/items" class="text-sm text-violet-800"> Lihat semua </a>
 	</div>
 	<div class="products-items flex w-full flex-col gap-2 overflow-scroll">
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
-		<EditableItemCard></EditableItemCard>
+		{#each data.allProducts as product}
+			<UneditableItemCard {product} />
+		{/each}
+	</div>
+</div>
+
+<div class="users m-4 flex flex-col items-center">
+	<div class="mb-4 flex w-full items-end justify-between">
+		<h3 class="text-2xl">List user</h3>
+		<a href="/admin/items" class="text-sm text-violet-800"> Lihat semua </a>
+	</div>
+	<div class="products-items flex w-full flex-col gap-2 overflow-scroll">
+		{#each data.allUsers as user}
+			<UneditableUserCard {user} />
+		{/each}
 	</div>
 </div>

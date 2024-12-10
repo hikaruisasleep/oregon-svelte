@@ -1,7 +1,8 @@
 <script lang="ts">
-	import type { ActionData } from './$types';
+	import { redirect } from '@sveltejs/kit';
+	import type { ActionData, PageData } from './$types';
 
-	let { form }: { form: ActionData } = $props();
+	let { form, load }: { form: ActionData; load: PageData } = $props();
 </script>
 
 <header class="flex h-16 w-full flex-row items-center justify-between px-6 shadow-md">
@@ -12,11 +13,14 @@
 </header>
 
 <div class="flex h-svh flex-col justify-center gap-12 px-4 pb-16">
-	<h1>Login ke 0regon</h1>
-	{#if form}
-		<p>email: {form.email}</p>
-		<p>password: {form.password}</p>
-	{/if}
+	<div>
+		<h1>Login ke 0regon</h1>
+		{#if form?.status == 'Success'}
+			<h3>Berhasil login!</h3>
+		{:else if form?.errored}
+			<p class="text-sm text-red-950">Error: {form.reason}</p>
+		{/if}
+	</div>
 	<form method="post" class="flex flex-col justify-center gap-4">
 		<div class="flex flex-col">
 			<label for="email">Email</label>

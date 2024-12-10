@@ -11,5 +11,6 @@ public class RegisterRequest
 public class RegisterResponse
 {
     public string Status { get; set; }
+    public int? UserId { get; set; }
     public string Token { get; set; }
 }
