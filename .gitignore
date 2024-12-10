@@ -26,3 +26,5 @@ bin/
 obj/
 .vs/
 .idea/
+
+db-data
