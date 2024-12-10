@@ -49,68 +49,78 @@ class Program
         if (args.Contains("migrate")) return;
         InitConfig();
 
-        VeldridStartup.CreateWindowAndGraphicsDevice(
+        if (args.Contains("headless")) {
+            _connString = $"Server={host};Database={db};User={user};Password={password};TrustServerCertificate={trustServer};";
+            serverHost = CreateHostBuilder(null).Build();
+            serverThread= new Thread(() =>
+            {
+                serverHost.Run();
+            });
+            serverThread.Start();
+        } else {
+            VeldridStartup.CreateWindowAndGraphicsDevice(
             new WindowCreateInfo(50, 50, 800, 400, WindowState.Normal, "Oregon - Backend"),
             new GraphicsDeviceOptions(true, null, true, ResourceBindingModel.Improved, true, true),
             out _window,
             out _gd);
         
-        _window.Resized += () =>
-        {
-            _gd.MainSwapchain.Resize((uint)_window.Width, (uint)_window.Height);
-            _controller.WindowResized(_window.Width, _window.Height);
-        };
-        
-        _window.Closed += () =>
-        {
-            if (serverHost != null)
+            _window.Resized += () =>
             {
-                serverHost.StopAsync().Wait();
-            }
-            if (serverThread != null)
+                _gd.MainSwapchain.Resize((uint)_window.Width, (uint)_window.Height);
+                _controller.WindowResized(_window.Width, _window.Height);
+            };
+            
+            _window.Closed += () =>
             {
-                serverThread.Join();
+                if (serverHost != null)
+                {
+                    serverHost.StopAsync().Wait();
+                }
+                if (serverThread != null)
+                {
+                    serverThread.Join();
+                }
+            };
+
+            _cl = _gd.ResourceFactory.CreateCommandList();
+            _controller = new ImGuiController(_gd, _gd.MainSwapchain.Framebuffer.OutputDescription, _window.Width, _window.Height);
+
+            var stopwatch = Stopwatch.StartNew();
+            var deltaTime = 0f;
+            
+            while (_window.Exists)
+            {
+                ImGui.SetNextWindowPos(new Vector2(0, 0));
+                deltaTime = stopwatch.ElapsedTicks / (float)Stopwatch.Frequency;
+                stopwatch.Restart();
+                var snapshot = _window.PumpEvents();
+                if (!_window.Exists) { break; }
+                _controller.Update(deltaTime, snapshot);
+
+                ImGui.SetNextWindowPos(Vector2.Zero, ImGuiCond.Always);
+                ImGui.SetNextWindowSize(new Vector2(_window.Width, _window.Height), ImGuiCond.Always);
+                var windowFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoTitleBar;
+
+                ImGui.Begin("Oregon", windowFlags); 
+                RenderUI();
+                
+                _cl.Begin();
+                _cl.SetFramebuffer(_gd.MainSwapchain.Framebuffer);
+                
+                _cl.ClearColorTarget(0, new RgbaFloat(_clearColor.X, _clearColor.Y, _clearColor.Z, 1f));
+                
+                _controller.Render(_gd, _cl);
+
+                _cl.End();
+                _gd.SubmitCommands(_cl);
+                _gd.SwapBuffers(_gd.MainSwapchain);
             }
-        };
 
-        _cl = _gd.ResourceFactory.CreateCommandList();
-        _controller = new ImGuiController(_gd, _gd.MainSwapchain.Framebuffer.OutputDescription, _window.Width, _window.Height);
-
-        var stopwatch = Stopwatch.StartNew();
-        var deltaTime = 0f;
-        
-        while (_window.Exists)
-        {
-            ImGui.SetNextWindowPos(new Vector2(0, 0));
-            deltaTime = stopwatch.ElapsedTicks / (float)Stopwatch.Frequency;
-            stopwatch.Restart();
-            var snapshot = _window.PumpEvents();
-            if (!_window.Exists) { break; }
-            _controller.Update(deltaTime, snapshot);
-
-            ImGui.SetNextWindowPos(Vector2.Zero, ImGuiCond.Always);
-            ImGui.SetNextWindowSize(new Vector2(_window.Width, _window.Height), ImGuiCond.Always);
-            var windowFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoTitleBar;
-
-            ImGui.Begin("Oregon", windowFlags); 
-            RenderUI();
-            
-            _cl.Begin();
-            _cl.SetFramebuffer(_gd.MainSwapchain.Framebuffer);
-            
-            _cl.ClearColorTarget(0, new RgbaFloat(_clearColor.X, _clearColor.Y, _clearColor.Z, 1f));
-            
-            _controller.Render(_gd, _cl);
-
-            _cl.End();
-            _gd.SubmitCommands(_cl);
-            _gd.SwapBuffers(_gd.MainSwapchain);
+            _gd.WaitForIdle();
+            _controller.Dispose();
+            _cl.Dispose();
+            _gd.Dispose();
         }
-
-        _gd.WaitForIdle();
-        _controller.Dispose();
-        _cl.Dispose();
-        _gd.Dispose();
     }
 
     private static IHostBuilder CreateHostBuilder(string[] args)
@@ -122,7 +132,7 @@ class Program
         var host = Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseUrls("http://localhost:5000");
+                webBuilder.UseUrls("http://0.0.0.0:5000");
                 webBuilder.ConfigureServices(services =>
                 {
                     services.AddControllers();
