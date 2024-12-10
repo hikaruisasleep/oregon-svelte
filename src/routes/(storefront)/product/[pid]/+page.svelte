@@ -6,7 +6,12 @@
 
 	let { data }: { data: PageData } = $props();
 
-	let descriptionBoxHeight = $state();
+	let product = $state(data.productResult.product);
+	$effect(() => {
+		product = data.productResult.product;
+	});
+
+	let descriptionBoxHeight = $state(0);
 	let needsExpansion = $state(false);
 	onMount(() => {
 		if (descriptionBoxHeight >= 128) {
@@ -14,12 +19,6 @@
 		}
 	});
 	let expandDescription = $state(false);
-
-	let product = $state(data.productResult.product);
-
-	$effect(() => {
-		product = data.productResult.product;
-	});
 </script>
 
 {#if product.imageUrl != ''}
