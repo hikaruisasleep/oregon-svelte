@@ -6,6 +6,7 @@ export const actions = {
 		const formData = await action.request.formData();
 		const name = formData.get('name')?.toString();
 		const price = parseFloat(formData.get('price')?.toString());
+		const category = formData.get('category');
 		const description = formData.get('description');
 		const imageBase64String = formData.get('imageBase64Data')?.toString();
 		let imageUrl = '';
@@ -44,6 +45,7 @@ export const actions = {
 			name,
 			price,
 			description,
+			category,
 			imageUrl
 		};
 
@@ -59,9 +61,15 @@ export const actions = {
 		if (request.ok) {
 			const result = await request.json();
 
+			return result;
+		} else {
+			const result = await request.json;
 			console.log(JSON.stringify(result));
 
-			return result;
+			return {
+				errored: true,
+				result: { ...result }
+			};
 		}
 	}
 } satisfies Actions;

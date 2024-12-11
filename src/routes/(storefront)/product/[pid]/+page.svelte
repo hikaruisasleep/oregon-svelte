@@ -7,18 +7,27 @@
 	let { data }: { data: PageData } = $props();
 
 	let product = $state(data.productResult.product);
-	$effect(() => {
-		product = data.productResult.product;
-	});
 
 	let descriptionBoxHeight = $state(0);
 	let needsExpansion = $state(false);
+	let expandDescription = $state(false);
+
 	onMount(() => {
 		if (descriptionBoxHeight >= 128) {
 			needsExpansion = true;
+		} else {
+			needsExpansion = false;
 		}
 	});
-	let expandDescription = $state(false);
+
+	$effect(() => {
+		if (descriptionBoxHeight >= 128) {
+			needsExpansion = true;
+		} else {
+			needsExpansion = false;
+		}
+		product = data.productResult.product;
+	});
 </script>
 
 {#if product.imageUrl != ''}
@@ -34,7 +43,7 @@
 	<div class="flex items-start justify-between">
 		<div class="flex flex-col items-start justify-center">
 			<h1 class="text-3xl font-light">{product.name}</h1>
-			<p class="text-green-800">
+			<p class="text-lg text-green-800">
 				Rp{product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.')}
 			</p>
 		</div>
@@ -42,10 +51,15 @@
 			4.8/5 <i class="fa-solid fa-star text-orange-400 drop-shadow-sm"></i>
 		</p>
 	</div>
-	<div class="flex flex-row items-center justify-start text-xs">
-		<p>Dilihat <span class="text-purple-900">{product.pageView}</span></p>
-		<span class="mx-2 h-4 w-[1px] bg-black"></span>
-		<p>Terjual <span class="text-purple-900">0</span></p>
+	<div class="flex flex-row justify-between">
+		<div class="flex flex-row items-center justify-start text-xs">
+			<p>Dilihat <span class="text-purple-900">{product.pageView}</span></p>
+			<span class="mx-2 h-4 w-[1px] bg-black"></span>
+			<p>Terjual <span class="text-purple-900">0</span></p>
+		</div>
+		<div>
+			<p>{product.category}</p>
+		</div>
 	</div>
 	<hr />
 	<div class="flex flex-col">
@@ -55,6 +69,8 @@
 			class:expanded={expandDescription}
 			bind:clientHeight={descriptionBoxHeight}
 		>
+			{descriptionBoxHeight}
+			<br />
 			{product.description}
 		</div>
 		<button

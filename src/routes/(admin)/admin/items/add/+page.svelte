@@ -26,6 +26,9 @@
 		<label for="price">Harga produk</label>
 		<input type="number" name="price" id="price" class="h-8" value="" />
 
+		<label for="category">Kategori</label>
+		<input type="text" name="category" id="category" class="h-8" value="" />
+
 		<label for="description">Deskripsi</label>
 		<textarea name="description" id="description" rows="5" value=""></textarea>
 
