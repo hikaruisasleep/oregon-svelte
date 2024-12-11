@@ -1,15 +1,15 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using oregon_backend.Models;
 using oregon_backend.types;
+using System.Text.Json;
 
 namespace oregon_backend.Controllers;
 
 [Route("api/product")]
 [ApiController]
-public class Product: ControllerBase
+public class Product : ControllerBase
 {
     private readonly ApplicationDbContext _context;
 
@@ -17,7 +17,7 @@ public class Product: ControllerBase
     {
         _context = context;
     }
-    
+
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> GetAll()
@@ -56,6 +56,7 @@ public class Product: ControllerBase
                 product.Description,
                 product.ImageUrl,
                 product.Price,
+                product.Category,
                 product.UserId,
                 product.PageView,
                 product.CreatedAt,
@@ -99,29 +100,35 @@ public class Product: ControllerBase
         {
             return BadRequest("Invalid request");
         }
-        
+
         if (string.IsNullOrEmpty(product.Name))
         {
             return BadRequest("Name is required");
         }
-        
+
+        if (string.IsNullOrEmpty(product.Category))
+        {
+            return BadRequest("Product category is required");
+        }
+
         if (product.Price == 0)
         {
             return BadRequest("Price is required");
         }
-        
+
         var newProduct = new Models.Product
         {
             Name = product.Name,
             Price = product.Price,
             Description = product.Description,
+            Category = product.Category,
             UserId = userId,
             ImageUrl = product.ImageUrl,
             PageView = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now
         };
-        
+
         _context.Products.Add(newProduct);
         await _context.SaveChangesAsync();
 
@@ -129,10 +136,10 @@ public class Product: ControllerBase
         {
             Message = "Success",
         };
-        
+
         return Ok(productAddReponse);
     }
-    
+
     [HttpPut("{id}")]
     [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> Put(int id)
@@ -149,17 +156,22 @@ public class Product: ControllerBase
         {
             return BadRequest("Invalid request");
         }
-        
+
         if (string.IsNullOrEmpty(product.Name))
         {
             return BadRequest("Name is required");
         }
-        
+
+        if (string.IsNullOrEmpty(product.Category))
+        {
+            return BadRequest("Product category is required");
+        }
+
         if (product.Price == 0)
         {
             return BadRequest("Price is required");
         }
-        
+
         var existingProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         if (existingProduct == null)
         {
@@ -169,19 +181,20 @@ public class Product: ControllerBase
         existingProduct.Name = product.Name;
         existingProduct.Price = product.Price;
         existingProduct.Description = product.Description;
+        existingProduct.Category = product.Category;
         existingProduct.ImageUrl = product.ImageUrl;
         existingProduct.UpdatedAt = DateTime.Now;
-        
+
         await _context.SaveChangesAsync();
-        
+
         var productEditResponse = new ProductUpdateResponse()
         {
             Message = "Success",
         };
-        
+
         return Ok(productEditResponse);
     }
-    
+
     [HttpDelete("{id}")]
     [RoleAuthorizeAttribute(1)]
     public async Task<IActionResult> Delete(int id)
@@ -200,12 +213,12 @@ public class Product: ControllerBase
 
         _context.Products.Remove(product);
         await _context.SaveChangesAsync();
-        
+
         var productDeleteResponse = new ProductDeleteResponse()
         {
             Message = "Success",
         };
-        
+
         return Ok(productDeleteResponse);
     }
 }
