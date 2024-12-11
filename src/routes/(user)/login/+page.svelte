@@ -21,7 +21,7 @@
 			<p class="text-sm text-red-950">Error: {form.reason}</p>
 		{/if}
 	</div>
-	<form method="post" class="flex flex-col justify-center gap-4">
+	<form method="post" class="flex flex-col justify-center gap-4" action="?/login">
 		<div class="flex flex-col">
 			<label for="email">Email</label>
 			<input type="email" name="email" id="email" />
