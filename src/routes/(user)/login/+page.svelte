@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { redirect } from '@sveltejs/kit';
 	import type { ActionData, PageData } from './$types';
 
-	let { form, load }: { form: ActionData; load: PageData } = $props();
+	let { form }: { form: ActionData } = $props();
 </script>
 
 <header class="flex h-16 w-full flex-row items-center justify-between px-6 shadow-md">
