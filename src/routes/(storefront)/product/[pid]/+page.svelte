@@ -115,20 +115,16 @@
 	</div>
 </div>
 
-<div
+<form
+	action="?/addtocart"
+	method="POST"
 	class="fixed bottom-0 flex h-12 w-full flex-row items-center justify-evenly gap-1 bg-violet-400 text-white md:w-[480px]"
 >
-	<button aria-label="chat seller"><i class="fa-regular fa-comments"></i></button>
-	<span class="mx-1 inline-block h-4/5 w-[1px] bg-violet-500 drop-shadow"></span>
-	<button>
-		<p>Beli Sekarang</p>
-	</button>
-	<span class="mx-1 inline-block h-4/5 w-[1px] bg-violet-500 drop-shadow"></span>
-	<button class="flex flex-row justify-center gap-[0.35ch]">
+	<button type="submit" class="flex flex-row justify-center">
 		<i class="fa-solid fa-plus fa-sm leading-relaxed"></i>
-		<p>Keranjang</p>
+		<p>Tambahkan ke Keranjang</p>
 	</button>
-</div>
+</form>
 
 <style>
 	.description-text {

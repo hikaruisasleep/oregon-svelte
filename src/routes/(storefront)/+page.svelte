@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ItemCard from '$lib/components/ItemCard.svelte';
+	import FeaturedItemCard from '$lib/components/FeaturedItemCard.svelte';
 	import CategoryCard from '$lib/components/CategoryCard.svelte';
-	import LocationCard from '$lib/components/LocationCard.svelte';
 
 	import type { LayoutData } from './$types';
 
@@ -21,10 +21,20 @@
 	/>
 </div>
 
+<div class="featured m-4">
+	<h3 class="mb-4 text-[0]">
+		<span class="text-xl font-normal">produk</span>
+		<span class="text-xl font-thin">unggulan</span>
+	</h3>
+	<div class="recommended-items flex flex-row gap-2 overflow-scroll">
+		<FeaturedItemCard />
+	</div>
+</div>
+
 <div class="recommended m-4">
 	<h3 class="mb-4 text-[0]">
-		<span class="text-xl font-normal text-violet-300">rekomendasi</span>
-		<span class="text-xl font-thin text-violet-900">untukmu</span>
+		<span class="text-xl font-normal">rekomendasi</span>
+		<span class="text-xl font-thin">untukmu</span>
 	</h3>
 	<div class="recommended-items flex flex-row gap-2 overflow-scroll">
 		{#each data.allProducts as product}
@@ -34,7 +44,10 @@
 </div>
 
 <div class="categories m-4">
-	<h3 class="mb-4 text-xl">kategori terpopuler</h3>
+	<h3 class="mb-4 text-[0]">
+		<span class="text-xl font-normal">kategori</span>
+		<span class="text-xl font-thin">terpopuler</span>
+	</h3>
 	<div class="category-items grid grid-flow-col grid-rows-2 gap-2 overflow-scroll">
 		<CategoryCard></CategoryCard>
 		<CategoryCard></CategoryCard>
@@ -46,16 +59,5 @@
 		<CategoryCard></CategoryCard>
 		<CategoryCard></CategoryCard>
 		<CategoryCard></CategoryCard>
-	</div>
-</div>
-
-<div class="location m-4">
-	<h3 class="mb-4 text-xl">Cari berdasarkan lokasi</h3>
-	<div class="location-items flex flex-row gap-2 overflow-scroll">
-		<LocationCard></LocationCard>
-		<LocationCard></LocationCard>
-		<LocationCard></LocationCard>
-		<LocationCard></LocationCard>
-		<LocationCard></LocationCard>
 	</div>
 </div>

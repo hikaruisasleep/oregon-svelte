@@ -1,19 +1,13 @@
 <script lang="ts">
 	import '../../app.css';
 
-	import { getContext, setContext, type Snippet } from 'svelte';
+	import { type Snippet } from 'svelte';
 	import type { LayoutData } from '../$types';
 	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 
 	let navigationHidden = $state(true);
 
-	if (data.session_token == undefined) {
-		setContext('logged_in', false);
-	} else {
-		setContext('logged_in', true);
-	}
-
-	let loggedIn = getContext('logged_in');
+	let loggedIn = data.isLoggedIn;
 </script>
 
 <svelte:head>
@@ -26,7 +20,10 @@
 			class="sticky top-0 z-10 flex h-16 w-full flex-row items-center justify-between bg-white px-6 shadow-md"
 		>
 			<a href="/"><h1 class="font-serif text-2xl text-violet-700 md:text-3xl">0regon</h1></a>
-			<div class:hidden={!loggedIn}>
+			<div class:hidden={!loggedIn} class="flex flex-row justify-end gap-3">
+				<a href="/cart" aria-label="cart"
+					><i class="fa-solid fa-cart-shopping fa-xl leading-normal"></i></a
+				>
 				<button
 					aria-label="expand navigation"
 					onclick={() => {
@@ -52,6 +49,7 @@
 					<nav
 						class="relative flex h-[65%] w-full flex-col items-center justify-center gap-12 text-2xl md:gap-16"
 					>
+						<p class="text-xs">Currently logged in as {data.currentUser.name}</p>
 						<a
 							href="/"
 							onclick={() => {
@@ -61,14 +59,6 @@
 							Home
 						</a>
 						<a
-							href="/categories"
-							onclick={() => {
-								navigationHidden = true;
-							}}
-						>
-							Categories
-						</a>
-						<a
 							href="/profile"
 							onclick={() => {
 								navigationHidden = true;
@@ -76,6 +66,16 @@
 						>
 							Profile
 						</a>
+						{#if data.isAdmin}
+							<a
+								href="/admin"
+								onclick={() => {
+									navigationHidden = true;
+								}}
+							>
+								Admin Panel
+							</a>
+						{/if}
 					</nav>
 					<div class="flex h-[5%] w-full flex-col items-center">
 						<form method="post" action="/?/logout">
