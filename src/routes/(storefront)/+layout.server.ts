@@ -7,9 +7,13 @@ export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 
 	const isLoggedIn: boolean = sessionToken != undefined;
 
-	const userRequest = await fetch(`${env.API}/user/${userId}`, { method: 'GET' });
-	const currentUser = await userRequest.json();
-	const isAdmin: boolean = currentUser.role == 1;
+	let currentUser = {};
+	let isAdmin: boolean = false;
+	if (isLoggedIn) {
+		const userRequest = await fetch(`${env.API}/user/${userId}`, { method: 'GET' });
+		currentUser = await userRequest.json();
+		isAdmin = currentUser.role == 1;
+	}
 
 	const productRequest = await fetch(`${env.API}/product`, { method: 'GET' });
 	const allProducts = await productRequest.json();
