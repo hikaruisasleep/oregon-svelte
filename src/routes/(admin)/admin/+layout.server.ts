@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ cookies }) => {
+export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 	const requestHeaders = new Headers();
 	requestHeaders.append('Authorization', `${cookies.get('session_token')}`);
 

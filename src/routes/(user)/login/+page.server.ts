@@ -9,7 +9,7 @@ export const actions = {
 
 		const formJson = { email: email, password: password };
 
-		const request = await fetch(`${env.API}/user/login`, {
+		const request = await action.fetch(`${env.API}/user/login`, {
 			method: 'POST',
 			body: JSON.stringify(formJson)
 		});

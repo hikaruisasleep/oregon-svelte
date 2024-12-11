@@ -30,7 +30,7 @@ export const actions = {
 			const requestHeaders = new Headers();
 			requestHeaders.append('Authorization', `Client-ID ${env.IMGUR_CLIENTID}`);
 
-			const imgurRequest = await fetch('https://api.imgur.com/3/image', {
+			const imgurRequest = await action.fetch('https://api.imgur.com/3/image', {
 				method: 'POST',
 				headers: requestHeaders,
 				body: imgurFormdata,
@@ -52,7 +52,7 @@ export const actions = {
 		const requestHeaders = new Headers();
 		requestHeaders.append('Authorization', `${action.cookies.get('session_token')}`);
 
-		const request = await fetch(`${env.API}/product`, {
+		const request = await action.fetch(`${env.API}/product`, {
 			method: 'POST',
 			headers: requestHeaders,
 			body: JSON.stringify(formJson)
