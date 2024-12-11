@@ -2,7 +2,7 @@ import { env } from '$env/dynamic/private';
 import type { Actions } from '@sveltejs/kit';
 
 export const actions = {
-	default: async (action) => {
+	login: async (action) => {
 		const formData = await action.request.formData();
 		const email = formData.get('email');
 		const password = formData.get('password');
