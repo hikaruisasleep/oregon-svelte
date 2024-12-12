@@ -63,7 +63,7 @@ export const actions = {
 
 			return result;
 		} else {
-			const result = await request.json;
+			const result = await request.json();
 			console.log(JSON.stringify(result));
 
 			return {

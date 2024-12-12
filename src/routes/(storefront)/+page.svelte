@@ -8,13 +8,15 @@
 	let { data }: { data: LayoutData } = $props();
 
 	let numberOfCarouselItems = $state(5);
+
+	let allProducts = [...data.allProducts];
 </script>
 
 <div class="featured flex h-60 w-full flex-col items-stretch bg-purple-800">
 	<div
 		class="featured-items flex w-full snap-x snap-mandatory flex-row gap-6 overflow-x-auto py-4 before:w-32 before:shrink-0 after:w-60 after:shrink-0"
 	>
-		{#each data.allProducts as product}
+		{#each allProducts as product}
 			<FeaturedItemCard {product} />
 		{/each}
 	</div>
@@ -39,28 +41,21 @@
 		<span class="text-xl font-thin">untukmu</span>
 	</h3>
 	<div class="recommended-items flex flex-row gap-2 overflow-scroll">
-		{#each data.allProducts as product}
+		{#each allProducts as product}
 			<ItemCard {product} />
 		{/each}
 	</div>
 </div>
 
-<div class="categories m-4">
+<div class="popular m-4">
 	<h3 class="mb-4 text-[0]">
-		<span class="text-xl font-normal">kategori</span>
+		<span class="text-xl font-normal">produk</span>
 		<span class="text-xl font-thin">terpopuler</span>
 	</h3>
-	<div class="category-items grid grid-flow-col grid-rows-2 gap-2 overflow-scroll">
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
-		<CategoryCard></CategoryCard>
+	<div class="popular-items flex flex-row gap-2 overflow-scroll">
+		{#each allProducts.sort((a, b) => b.pageView - a.pageView) as product}
+			<ItemCard {product} />
+		{/each}
 	</div>
 </div>
 
