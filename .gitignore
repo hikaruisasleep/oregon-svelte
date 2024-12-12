@@ -28,3 +28,5 @@ obj/
 .idea/
 
 db-data
+
+oregon-backend/oregon-backend/config.json
