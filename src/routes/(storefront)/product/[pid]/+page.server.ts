@@ -20,7 +20,7 @@ export const actions = {
 
 		const jsonBody = {
 			cart: {
-				productId: action.params.pid,
+				productId: parseInt(action.params.pid),
 				quantity: 1
 			}
 		};
