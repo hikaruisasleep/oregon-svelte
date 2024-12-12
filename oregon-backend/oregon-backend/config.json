@@ -1,11 +1,11 @@
 {
-  "Database": {
-    "Db": "oregon",
-    "Host": "localhost",
-    "Port": "",
-    "User": "sa",
-    "Password": "@Fish123",
-    "TrustServerCertificate": true
-  },
-  "JwtSecret": ""
+	"Database": {
+		"Db": "oregon",
+		"Host": "localhost",
+		"Port": "",
+		"User": "aaa",
+		"Password": "password",
+		"TrustServerCertificate": true
+	},
+	"JwtSecret": ""
 }

@@ -2,11 +2,32 @@
 	import ItemCard from '$lib/components/ItemCard.svelte';
 	import FeaturedItemCard from '$lib/components/FeaturedItemCard.svelte';
 	import CategoryCard from '$lib/components/CategoryCard.svelte';
+	import Carousel from '@beyonk/svelte-carousel';
 
 	import type { LayoutData } from './$types';
 
 	let { data }: { data: LayoutData } = $props();
+
+	let numberOfCarouselItems = $state(5);
+	let currentFeaturedItem = $state(0);
 </script>
+
+<div class="featured flex h-60 w-full flex-col items-stretch bg-purple-800">
+	<div
+		class="featured-items flex snap-x snap-mandatory flex-row items-start gap-6 overflow-scroll py-4"
+	>
+		<Carousel>
+			{#each { length: numberOfCarouselItems } as _, index}
+				<FeaturedItemCard />
+			{/each}
+		</Carousel>
+	</div>
+	<div class="featured-dots flex justify-center gap-2">
+		{#each { length: numberOfCarouselItems } as index}
+			<div class="h-2 w-2 rounded-full bg-gray-50 opacity-100"></div>
+		{/each}
+	</div>
+</div>
 
 <div
 	class="mx-4 mb-0 mt-4 flex flex-row items-center justify-around gap-1 rounded-lg border-2 border-black px-1"
@@ -19,16 +40,6 @@
 		class="m-0 h-5/6 w-11/12 border-none p-0"
 		placeholder="Cari di website ini..."
 	/>
-</div>
-
-<div class="featured m-4">
-	<h3 class="mb-4 text-[0]">
-		<span class="text-xl font-normal">produk</span>
-		<span class="text-xl font-thin">unggulan</span>
-	</h3>
-	<div class="recommended-items flex flex-row gap-2 overflow-scroll">
-		<FeaturedItemCard />
-	</div>
 </div>
 
 <div class="recommended m-4">
@@ -61,3 +72,14 @@
 		<CategoryCard></CategoryCard>
 	</div>
 </div>
+
+<style lang="scss">
+	.featured *::-webkit-scrollbar-thumb {
+		display: none;
+	}
+
+	.featured * {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+</style>
