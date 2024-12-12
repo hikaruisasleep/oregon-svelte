@@ -15,7 +15,7 @@
 		class="featured-items flex w-full snap-x snap-mandatory flex-row gap-6 overflow-x-auto py-4 before:w-32 before:shrink-0 after:w-60 after:shrink-0"
 	>
 		{#each { length: numberOfCarouselItems } as _, index}
-			<FeaturedItemCard />
+			<FeaturedItemCard {product} />
 		{/each}
 	</div>
 </div>
