@@ -2,29 +2,20 @@
 	import ItemCard from '$lib/components/ItemCard.svelte';
 	import FeaturedItemCard from '$lib/components/FeaturedItemCard.svelte';
 	import CategoryCard from '$lib/components/CategoryCard.svelte';
-	import Carousel from '@beyonk/svelte-carousel';
 
 	import type { LayoutData } from './$types';
 
 	let { data }: { data: LayoutData } = $props();
 
 	let numberOfCarouselItems = $state(5);
-	let currentFeaturedItem = $state(0);
 </script>
 
 <div class="featured flex h-60 w-full flex-col items-stretch bg-purple-800">
 	<div
-		class="featured-items flex snap-x snap-mandatory flex-row items-start gap-6 overflow-scroll py-4"
+		class="featured-items flex w-full snap-x snap-mandatory flex-row gap-6 overflow-x-auto py-4 before:w-32 before:shrink-0 after:w-60 after:shrink-0"
 	>
-		<Carousel>
-			{#each { length: numberOfCarouselItems } as _, index}
-				<FeaturedItemCard />
-			{/each}
-		</Carousel>
-	</div>
-	<div class="featured-dots flex justify-center gap-2">
-		{#each { length: numberOfCarouselItems } as index}
-			<div class="h-2 w-2 rounded-full bg-gray-50 opacity-100"></div>
+		{#each { length: numberOfCarouselItems } as _, index}
+			<FeaturedItemCard />
 		{/each}
 	</div>
 </div>
