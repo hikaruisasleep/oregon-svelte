@@ -47,9 +47,13 @@ public class Cart: ControllerBase
     public async Task<IActionResult> Post()
     {
         var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
-        var bodyStr = await new StreamReader(Request.Body).ReadToEndAsync();
-        var cart = JsonSerializer.Deserialize<CartAddRequest>(bodyStr);
-        
+        using var reader = new StreamReader(Request.Body);
+        var bodyStr = await reader.ReadToEndAsync();
+        var cart = JsonSerializer.Deserialize<CartAddRequest>(bodyStr, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
         if (cart == null)
         {
             return BadRequest();

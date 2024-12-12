@@ -3,8 +3,8 @@
     "Db": "oregon",
     "Host": "localhost",
     "Port": "",
-    "User": "aaa",
-    "Password": "password",
+    "User": "sa",
+    "Password": "@Fish123",
     "TrustServerCertificate": true
   },
   "JwtSecret": ""
