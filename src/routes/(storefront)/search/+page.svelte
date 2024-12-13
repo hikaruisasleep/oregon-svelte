@@ -50,7 +50,7 @@
 			<span class="text-xl font-normal">hasil</span>
 			<span class="text-xl font-thin">pencarian</span>
 		</h3>
-		<div class="searchresult-items grid grid-flow-col gap-2">
+		<div class="searchresult-items grid w-full grid-flow-col gap-2">
 			{#each data.searchResult as product}
 				<ItemCard {product} />
 			{/each}
@@ -58,14 +58,11 @@
 	</div>
 {:else}
 	<div class="searchresult m-4 flex h-fit min-h-[76svh] flex-col items-center justify-center">
-		<h3 class="h-fit w-fit text-xl">
+		<h3 class="h-fit w-fit text-center text-lg">
 			<span class="inline-block -translate-y-1/2 text-xs"><i class="fa-solid fa-sparkle"></i></span>
 			<span class="font-thin">maaf, kami tidak menemukan hasil untuk</span>
-			<span class="text-[0]">
-				<span class="text-xl font-thin">"</span>
-				<span class="text-xl font-normal">{data.searchTerm}</span>
-				<span class="text-xl font-thin">"</span>
-			</span>
+			<br />
+			<span class="font-normal">{data.searchTerm}</span>
 		</h3>
 	</div>
 {/if}
