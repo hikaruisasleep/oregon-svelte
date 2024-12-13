@@ -64,7 +64,7 @@ public class Cart: ControllerBase
             return BadRequest();
         }
     
-        var existingCart = await _context.Carts.FirstOrDefaultAsync(c => c.UserId == userId && c.ProductId == cart.ProductId);
+        var existingCart = await _context.Carts.FirstOrDefaultAsync(c => c.UserId == userId && c.ProductId == cart.ProductId && c.IsCheckedOut == false);
         if (existingCart != null)
         {
             existingCart.Quantity += cart.Quantity;
@@ -158,5 +158,31 @@ public class Cart: ControllerBase
         };
         
         return Ok(cartDeleteResponse);
+    }
+    
+    [HttpPost("checkout")]
+    public async Task<IActionResult> Checkout()
+    {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
+        var carts = await _context.Carts.Where(c => c.UserId == userId && c.IsCheckedOut == false).ToListAsync();
+        if (carts.Count == 0)
+        {
+            return BadRequest();
+        }
+
+        foreach (var cart in carts)
+        {
+            cart.IsCheckedOut = true;
+            cart.UpdatedAt = DateTime.Now;
+        }
+        
+        await _context.SaveChangesAsync();
+        
+        var cartCheckoutResponse = new
+        {
+            Message = "Success"
+        };
+        
+        return Ok(cartCheckoutResponse);
     }
 }

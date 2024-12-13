@@ -224,4 +224,16 @@ public class Product : ControllerBase
 
         return Ok(productDeleteResponse);
     }
+    
+    [HttpGet("is_checked_out")]
+    public async Task<IActionResult> GetIsCheckedOut([FromQuery] int productId)
+    {
+        var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
+        var cart = await _context.Carts.FirstOrDefaultAsync(c => c.ProductId == productId && c.UserId == userId && c.IsCheckedOut == true);
+        if (cart == null)
+        {
+            return Ok(new { IsCheckedOut = false });
+        }
+        return Ok(new { IsCheckedOut = true });
+    }
 }
