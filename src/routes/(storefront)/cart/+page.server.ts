@@ -18,5 +18,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	});
 	const userCart = await cartRequest.json();
 
+	console.log(userCart);
+
 	return { userCart };
 };

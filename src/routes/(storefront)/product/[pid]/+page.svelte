@@ -116,7 +116,6 @@
 </div>
 
 <form
-	action="?/addtocart"
 	method="POST"
 	class="fixed bottom-0 flex h-12 w-full flex-row items-center justify-evenly gap-1 bg-violet-400 text-white md:w-[480px]"
 >

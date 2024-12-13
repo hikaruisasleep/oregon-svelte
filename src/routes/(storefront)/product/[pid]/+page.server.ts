@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ params, fetch }) => {
 };
 
 export const actions = {
-	addtocart: async (action) => {
+	default: async (action) => {
 		const sessionToken = action.cookies.get('session_token');
 
 		const requestHeaders = new Headers();
@@ -34,6 +34,9 @@ export const actions = {
 		if (addToCartRequest.status == 401) {
 			redirect(302, '/login');
 		}
-		console.log(addToCartRequest);
+
+		if (addToCartRequest.ok) {
+			redirect(301, `/products/${action.params.pid}`);
+		}
 	}
 } satisfies Actions;

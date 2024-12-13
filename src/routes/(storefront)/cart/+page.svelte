@@ -4,4 +4,6 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-<p>{data.userCart}</p>
+{#each data.userCart as cartItem}
+	<p>{JSON.stringify(cartItem)}</p>
+{/each}

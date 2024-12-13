@@ -3,6 +3,8 @@
 	import FeaturedItemCard from '$lib/components/FeaturedItemCard.svelte';
 	import CategoryCard from '$lib/components/CategoryCard.svelte';
 
+	import ctaMascot from '$lib/static/cta-mascot.png';
+
 	import type { LayoutData } from './$types';
 
 	let { data }: { data: LayoutData } = $props();
@@ -23,16 +25,28 @@
 </div>
 
 <div
-	class="mx-4 mb-0 mt-4 flex flex-row items-center justify-around gap-1 rounded-lg border-2 border-black px-1"
+	class="mx-auto flex w-4/5 -translate-y-1/4 flex-col gap-4 rounded-3xl bg-pink-300 p-6 md:-translate-y-1/3"
 >
-	<i class="fa-solid fa-magnifying-glass fa-xl leading-normal"></i>
-	<input
-		type="search"
-		name="search"
-		id="searchbar"
-		class="m-0 h-5/6 w-11/12 border-none p-0"
-		placeholder="Cari di website ini..."
-	/>
+	<h3 class="w-1/2 text-2xl font-semibold">
+		Hidup cuma sekali, kenapa nggak untuk yang kamu cintai?
+	</h3>
+	<div
+		class=" flex flex-row items-center justify-around gap-1 rounded-full border-2 border-black bg-white px-1"
+	>
+		<i class="fa-solid fa-magnifying-glass fa-xl leading-normal"></i>
+		<input
+			type="search"
+			name="search"
+			id="searchbar"
+			class="h-11/12 m-0 w-5/6 border-none p-0 font-thin sm:w-11/12"
+			placeholder="Mau khilaf apa hari ini?"
+		/>
+	</div>
+	<div
+		class="fixed -bottom-16 -right-16 flex h-60 w-36 items-center justify-center overflow-hidden"
+	>
+		<img src={ctaMascot} alt="cat" class="h-60 w-72 max-w-[unset]" />
+	</div>
 </div>
 
 <div class="recommended m-4">
