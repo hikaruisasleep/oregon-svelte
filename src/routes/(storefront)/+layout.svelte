@@ -16,12 +16,12 @@
 	<title>0regon</title>
 </svelte:head>
 
-<div class="flex h-auto w-svw flex-col content-center items-center overflow-visible">
+<div class="flex h-auto min-h-svh w-svw flex-col content-center items-center overflow-visible">
 	<div class="m-0 flex h-full w-full flex-col p-0 md:w-[480px]">
 		<header
 			class="sticky top-0 z-10 flex h-16 w-full flex-row items-center justify-between bg-white px-6 shadow-md"
 		>
-			<a href="/" class="flex h-[150%] -translate-x-6 flex-row items-center justify-start">
+			<a href="/" class="flex h-[150%] -translate-x-8 flex-row items-center justify-start">
 				<img src={mascot} alt="mascot" class="h-full translate-y-2" />
 				<h1 class="-translate-x-4 font-serif text-2xl text-violet-700 md:text-3xl">0regon</h1>
 			</a>
@@ -91,8 +91,8 @@
 					</div>
 				</div>
 			</div>
-			<div class:hidden={loggedIn}>
-				<a href="/login">Log in</a>
+			<div class:hidden={loggedIn} class="w-max">
+				<a href="/login" class="w-max text-nowrap">Log in</a>
 			</div>
 		</header>
 

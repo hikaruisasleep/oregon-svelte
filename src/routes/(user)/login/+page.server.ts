@@ -20,7 +20,7 @@ export const actions = {
 			action.cookies.set('session_token', result.token, { path: '/' });
 			action.cookies.set('user_id', result.userId, { path: '/' });
 
-			return result;
+			return { ...result };
 		} else {
 			return {
 				errored: true,

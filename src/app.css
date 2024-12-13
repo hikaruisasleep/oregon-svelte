@@ -11,7 +11,9 @@ h1 {
 p,
 a,
 h1,
-h2 {
+h2,
+h3,
+span {
 	user-select: none;
 }
 
@@ -29,4 +31,18 @@ h2 {
 ::-webkit-scrollbar-thumb {
 	background: #ccc;
 	border-radius: 5px;
+}
+
+input:focus {
+	outline: none;
+	border: none;
+}
+
+input:-moz-focusring {
+	outline: none;
+	border: none;
+}
+
+input::-moz-focus-inner {
+	border-style: none;
 }

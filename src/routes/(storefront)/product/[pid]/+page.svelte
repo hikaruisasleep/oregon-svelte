@@ -65,12 +65,10 @@
 	<div class="flex flex-col">
 		<h3 class="mb-1 text-lg font-medium">Detail produk</h3>
 		<div
-			class="description-text text-justify text-sm leading-snug"
+			class="description-text whitespace-pre-line text-justify text-sm leading-snug"
 			class:expanded={expandDescription}
 			bind:clientHeight={descriptionBoxHeight}
 		>
-			{descriptionBoxHeight}
-			<br />
 			{product.description}
 		</div>
 		<button

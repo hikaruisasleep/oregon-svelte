@@ -1,5 +1,12 @@
+<script>
+	import mascot from '$lib/static/mascot.png';
+</script>
+
 <header class="flex h-16 w-full flex-row items-center justify-between px-6 shadow-md">
-	<a href="/"><h1 class="font-serif text-2xl text-violet-700 md:text-3xl">0regon</h1></a>
+	<a href="/" class="flex h-[150%] -translate-x-8 flex-row items-center justify-start">
+		<img src={mascot} alt="mascot" class="h-full translate-y-2" />
+		<h1 class="-translate-x-4 font-serif text-2xl text-violet-700 md:text-3xl">0regon</h1>
+	</a>
 	<div>
 		<a href="/login">Login</a>
 	</div>
