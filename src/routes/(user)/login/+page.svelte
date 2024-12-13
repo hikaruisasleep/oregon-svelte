@@ -52,9 +52,9 @@
 		{#if formLoading}
 			<button
 				type="submit"
-				class="flex h-8 w-24 flex-row items-center justify-evenly self-center rounded-xl bg-violet-400 font-semibold text-white"
+				class="flex h-8 w-24 flex-shrink-0 flex-row items-center justify-evenly self-center rounded-xl bg-violet-400 font-semibold text-white"
 			>
-				<i class="fa-solid fa-spinner fa-xl animate-spin leading-normal"></i>
+				<i class="fa-solid fa-spinner fa-sm animate-spin leading-normal"></i>
 				Login
 			</button>
 		{:else}
