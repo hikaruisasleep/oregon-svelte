@@ -58,29 +58,38 @@ public class Cart: ControllerBase
         {
             return BadRequest();
         }
-        
+    
         if (cart.Quantity <= 0)
         {
             return BadRequest();
         }
-        
-        var cartModel = new Models.Cart()
+    
+        var existingCart = await _context.Carts.FirstOrDefaultAsync(c => c.UserId == userId && c.ProductId == cart.ProductId);
+        if (existingCart != null)
         {
-            UserId = userId,
-            ProductId = cart.ProductId,
-            Quantity = cart.Quantity,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now
-        };
-        
-        await _context.Carts.AddAsync(cartModel);
+            existingCart.Quantity += cart.Quantity;
+            existingCart.UpdatedAt = DateTime.Now;
+        }
+        else
+        {
+            var cartModel = new Models.Cart()
+            {
+                UserId = userId,
+                ProductId = cart.ProductId,
+                Quantity = cart.Quantity,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
+            await _context.Carts.AddAsync(cartModel);
+        }
+    
         await _context.SaveChangesAsync();
 
         var cartAddResponse = new CartAddResponse()
         {
             Message = "Success"
         };
-        
+    
         return Ok(cartAddResponse);
     }
     
