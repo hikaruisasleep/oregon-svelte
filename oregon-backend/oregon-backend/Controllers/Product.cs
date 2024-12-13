@@ -20,9 +20,12 @@ public class Product : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] string category, [FromQuery] string name)
     {
-        var products = await _context.Products.ToListAsync();
+        var products = await _context.Products
+            .Where(p => string.IsNullOrEmpty(category) || p.Category == category)
+            .Where(p => string.IsNullOrEmpty(name) || p.Name.Contains(name))
+            .ToListAsync();
         return Ok(products);
     }
 
