@@ -1,12 +1,12 @@
 <script>
-	let { cartItem } = $props();
+	let { cartItem, productQty = $bindable() } = $props();
 	let product = cartItem.product;
-
-	let productQty = $state(1);
 
 	if (cartItem.quantity) {
 		productQty = cartItem.quantity;
 	}
+
+	let qtyForm = $state();
 </script>
 
 <div
@@ -28,7 +28,42 @@
 			</p>
 		</div>
 	</div>
-	<div class="col-span-1 flex flex-col justify-around px-5 py-3 text-right">
-		<input type="number" name="quantity" id="quantity" bind:value={productQty} />
+
+	<div class="flex w-fit items-center justify-center">
+		<form
+			action="?/updatecart"
+			method="post"
+			bind:this={qtyForm}
+			class="flex h-min w-fit flex-row items-center justify-center overflow-clip rounded-lg border border-gray-800"
+		>
+			<button
+				type="button"
+				class="w-6 bg-gray-200"
+				onclick={() => {
+					productQty > 0 ? (productQty -= 1) : (productQty = 0);
+					qtyForm.submit();
+				}}
+			>
+				-
+			</button>
+			<input type="hidden" name="product-id" value={cartItem.productId} />
+			<input
+				type="number"
+				name={`qty-${cartItem.productId}`}
+				id={`qty-${cartItem.productId}`}
+				bind:value={productQty}
+				class="w-8 border border-y-0 border-gray-800 bg-white p-0 text-center"
+			/>
+			<button
+				type="button"
+				class="w-6 bg-gray-200"
+				onclick={() => {
+					productQty += 1;
+					qtyForm.submit();
+				}}
+			>
+				+
+			</button>
+		</form>
 	</div>
 </div>

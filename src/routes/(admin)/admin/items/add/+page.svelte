@@ -45,15 +45,3 @@
 		{JSON.stringify(form)}
 	{/if}
 </div>
-
-<style>
-	input[type='number'] {
-		appearance: textfield;
-	}
-
-	input[type='number']::-webkit-inner-spin-button,
-	input[type='number']::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-</style>

@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from '../$types';
 import { env } from '$env/dynamic/private';
 
@@ -27,3 +27,54 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 	return { userCart };
 };
+
+export const actions = {
+	updatecart: async (action) => {
+		const sessionToken = action.cookies.get('session_token');
+		const formData = await action.request.formData();
+		const pid = formData.get('product-id');
+		const quantity = formData.get(`qty-${pid}`);
+
+		const formJson = { id: pid, quantity: quantity };
+
+		if (!sessionToken) {
+			redirect(302, '/login');
+		}
+
+		const requestHeaders = new Headers();
+		requestHeaders.append('Authorization', sessionToken);
+
+		const updateRequest = await fetch(`${env.API}/cart/${pid}`, {
+			method: 'PUT',
+			headers: requestHeaders,
+			body: JSON.stringify(formJson)
+		});
+
+		const updateResult = await updateRequest.json();
+
+		if (updateResult.ok) {
+			return { updateRequest };
+		}
+	},
+	checkout: async (action) => {
+		const sessionToken = action.cookies.get('session_token');
+
+		console.log(`token: ${sessionToken}`);
+
+		const requestHeaders = new Headers();
+		requestHeaders.append('Authorization', sessionToken);
+
+		const checkoutRequest = await fetch(`${env.API}/cart/checkout`, {
+			method: 'POST',
+			headers: requestHeaders
+		});
+
+		const checkoutResponse = await checkoutRequest.json();
+
+		if (checkoutResponse.ok) {
+			redirect(302, '/cart/checkout');
+		} else {
+			console.log(checkoutResponse);
+		}
+	}
+} satisfies Actions;
