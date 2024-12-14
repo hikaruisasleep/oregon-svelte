@@ -50,7 +50,9 @@
 			<span class="text-xl font-normal">hasil</span>
 			<span class="text-xl font-thin">pencarian</span>
 		</h3>
-		<div class="searchresult-items grid h-auto w-full grid-flow-col gap-2">
+		<div
+			class="searchresult-items grid h-auto w-full grid-cols-4 justify-center justify-items-center gap-2"
+		>
 			{#each data.searchResult as product}
 				<ItemCard {product} />
 			{/each}

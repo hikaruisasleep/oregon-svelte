@@ -36,9 +36,20 @@ export const actions = {
 				body: imgurFormdata,
 				redirect: 'follow'
 			});
-			const imgurResult = await imgurRequest.json();
 
-			imageUrl = imgurResult.data.link;
+			if (imgurRequest.ok) {
+				const imgurResult = await imgurRequest.json();
+
+				imageUrl = imgurResult.data.link;
+			} else {
+				const result = await imgurRequest.json();
+				console.log(JSON.stringify(result));
+
+				return {
+					errored: true,
+					result: { ...result }
+				};
+			}
 		}
 
 		const formJson = {
