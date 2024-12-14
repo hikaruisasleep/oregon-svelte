@@ -1,7 +1,12 @@
 import { env } from '$env/dynamic/private';
+import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
+	if (!cookies.get('session_token')) {
+		redirect(302, '/login');
+	}
+
 	const requestHeaders = new Headers();
 	requestHeaders.append('Authorization', `${cookies.get('session_token')}`);
 
