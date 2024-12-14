@@ -98,7 +98,10 @@ public class Cart: ControllerBase
     {
         var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var bodyStr = await new StreamReader(Request.Body).ReadToEndAsync();
-        var cart = JsonSerializer.Deserialize<CartUpdateRequest>(bodyStr);
+        var cart = JsonSerializer.Deserialize<CartUpdateRequest>(bodyStr, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
         
         if (cart == null)
         {
