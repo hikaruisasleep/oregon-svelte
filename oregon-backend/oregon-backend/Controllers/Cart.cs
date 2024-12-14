@@ -21,7 +21,7 @@ public class Cart: ControllerBase
     public async Task<IActionResult> GetAll()
     {
         var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
-        var carts = await _context.Carts.Where(c => c.UserId == userId).ToListAsync();
+        var carts = await _context.Carts.Where(c => c.UserId == userId && c.IsCheckedOut == false).ToListAsync();
         return Ok(carts);
     }
     
