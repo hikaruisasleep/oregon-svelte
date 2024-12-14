@@ -19,10 +19,8 @@ export const actions = {
 		requestHeaders.append('Authorization', sessionToken);
 
 		const jsonBody = {
-			cart: {
-				productId: parseInt(action.params.pid),
-				quantity: 1
-			}
+			productId: parseInt(action.params.pid),
+			quantity: 1
 		};
 
 		const addToCartRequest = await fetch(`${env.API}/cart`, {
@@ -31,11 +29,13 @@ export const actions = {
 			body: JSON.stringify(jsonBody)
 		});
 
-		if (addToCartRequest.status == 401) {
+		const addToCartResult = await addToCartRequest.json();
+
+		if (addToCartResult.status == 401) {
 			redirect(302, '/login');
 		}
 
-		if (addToCartRequest.ok) {
+		if (addToCartResult.ok) {
 			redirect(301, `/products/${action.params.pid}`);
 		}
 	}

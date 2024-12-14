@@ -4,10 +4,13 @@
 
 <a href="/product/{product.id}">
 	<div
-		class="grid h-72 w-40 flex-shrink-0 flex-grow-0 grid-cols-1 grid-rows-7 rounded border border-black"
+		class="grid h-72 w-36 flex-shrink-0 flex-grow-0 grid-cols-1 grid-rows-7 rounded border border-black"
 	>
 		{#if product.imageUrl != ''}
-			<div class="row-span-4 bg-cover" style="background-image: url({product.imageUrl});"></div>
+			<div
+				class="row-span-4 bg-cover bg-center"
+				style="background-image: url({product.imageUrl});"
+			></div>
 		{:else}
 			<div class="row-span-4 bg-violet-400"></div>
 		{/if}

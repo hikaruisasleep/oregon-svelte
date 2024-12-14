@@ -16,9 +16,14 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		method: 'GET',
 		headers: requestHeaders
 	});
-	const userCart = await cartRequest.json();
+	let userCart = await cartRequest.json();
 
-	console.log(userCart);
+	for (const [index, item] of userCart.entries()) {
+		const itemRequest = await fetch(`${env.API}/product/${item.productId}`);
+		const itemResult = await itemRequest.json();
+
+		userCart[index].product = itemResult.product;
+	}
 
 	return { userCart };
 };
