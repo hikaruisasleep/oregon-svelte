@@ -17,6 +17,16 @@ public class Product : ControllerBase
     {
         _context = context;
     }
+    
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetFeatured()
+    {
+        var products = await _context.Products
+            .Where(p => p.FeaturedItem == true)
+            .ToListAsync();
+        return Ok(products);
+    }
 
     [HttpGet]
     [AllowAnonymous]
@@ -127,6 +137,8 @@ public class Product : ControllerBase
             Category = product.Category,
             UserId = userId,
             ImageUrl = product.ImageUrl,
+            FeaturedItem = product.FeaturedItem,
+            FeaturedImageUrl = product.FeaturedImageUrl,
             PageView = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now
@@ -187,6 +199,8 @@ public class Product : ControllerBase
         existingProduct.Category = product.Category;
         existingProduct.ImageUrl = product.ImageUrl;
         existingProduct.UpdatedAt = DateTime.Now;
+        existingProduct.FeaturedItem = product.FeaturedItem;
+        existingProduct.FeaturedImageUrl = product.FeaturedImageUrl;
 
         await _context.SaveChangesAsync();
 

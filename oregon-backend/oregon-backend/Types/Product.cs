@@ -7,6 +7,8 @@ public class ProductAddRequest
     public double Price { get; set; }
     public string ImageUrl { get; set; }
     public string Category { get; set; }
+    public bool FeaturedItem { get; set; }
+    public string? FeaturedImageUrl { get; set; }
 }
 
 public class ProductUpdateRequest

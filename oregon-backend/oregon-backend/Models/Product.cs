@@ -10,6 +10,8 @@ public class Product
     public string Category { get; set; }
     public int UserId { get; set; }
     public int PageView { get; set; }
+    public bool FeaturedItem { get; set; }
+    public string? FeaturedImageUrl { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public DateTime? DeletedAt { get; set; }
