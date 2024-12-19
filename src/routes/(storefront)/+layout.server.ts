@@ -1,4 +1,5 @@
 import { env } from '$env/dynamic/private';
+import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
@@ -11,7 +12,7 @@ export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 	const isLoggedIn: boolean = sessionToken != undefined;
 
 	let currentUser = {};
-	let userCart: any[] = [];
+	let userCart: any = [];
 	let isAdmin: boolean = false;
 	if (isLoggedIn) {
 		const userRequest = await fetch(`${env.API}/user/${userId}`, { method: 'GET' });
@@ -29,6 +30,11 @@ export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 				const itemResult = await itemRequest.json();
 				userCart[index].product = itemResult.product;
 			}
+		}
+		if (userCart.StatusCode == 401) {
+			cookies.delete('session_token', { path: '/' });
+			
+			throw redirect(302, '/login');
 		}
 	}
 

@@ -4,6 +4,8 @@
 
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 
+	console.log(data.userCart);
+
 	let totalPrice = $derived.by(() => {
 		if (data.userCart.length > 0) {
 			let temp = 0;
@@ -17,9 +19,10 @@
 	});
 
 	let checkoutAnimation = $state(false);
+
 </script>
 
-{#if data.userCart.length >= 0}
+{#if data.userCart.length <= 0}
 	<div class="flex h-[80vh] w-full flex-col items-center justify-center">
 		<p class="text-[0]">
 			<span class="inline-block -translate-y-1/2 text-xs leading-normal"
@@ -38,6 +41,8 @@
 		<span class="text-xl font-normal">keranjang</span>
 		<span class="text-xl font-thin">belanjamu</span>
 	</h3>
+
+
 
 	<div class="flex flex-col gap-4">
 		{#each data.userCart as cartItem}
