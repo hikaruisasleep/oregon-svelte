@@ -1,7 +1,12 @@
 <script lang="ts">
+	import { redirect } from '@sveltejs/kit';
 	import type { PageServerData } from '../$types';
 
 	let { data }: { data: PageServerData } = $props();
+
+	if (!data.isLoggedIn) {
+		redirect(307, '/login');
+	}
 </script>
 
 <div class="h-56 bg-violet-600"></div>

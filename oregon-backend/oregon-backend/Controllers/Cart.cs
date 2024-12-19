@@ -30,6 +30,7 @@ public class Cart: ControllerBase
     {
         var userId = Int32.Parse(HttpContext.Items["UserId"].ToString());
         var cart = await _context.Carts.FindAsync(id);
+
         if (cart == null)
         {
             return NotFound();

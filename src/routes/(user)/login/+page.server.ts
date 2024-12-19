@@ -14,6 +14,10 @@ export const actions = {
 			body: JSON.stringify(formJson)
 		});
 
+		await new Promise((r) => {
+			setTimeout(r, 1000);
+		});
+
 		if (request.ok) {
 			const result: { status: string; userId: string; token: string } = await request.json();
 

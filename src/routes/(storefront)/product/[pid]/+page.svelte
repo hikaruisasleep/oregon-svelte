@@ -113,15 +113,17 @@
 	</div>
 </div>
 
-<form
-	method="POST"
-	class="fixed bottom-0 flex h-12 w-full flex-row items-center justify-evenly gap-1 bg-violet-400 text-white md:w-[480px]"
->
-	<button type="submit" class="flex flex-row justify-center">
-		<i class="fa-solid fa-plus fa-sm leading-relaxed"></i>
-		<p>Tambahkan ke Keranjang</p>
-	</button>
-</form>
+{#if data.isLoggedIn}
+	<form
+		method="POST"
+		class="fixed bottom-0 flex h-12 w-full flex-row items-center justify-evenly bg-violet-400 text-white md:w-[480px]"
+	>
+		<button type="submit" class="flex w-full flex-row justify-center">
+			<i class="fa-solid fa-plus fa-sm leading-relaxed"></i>
+			<p>Tambahkan ke Keranjang</p>
+		</button>
+	</form>
+{/if}
 
 <style>
 	.description-text {

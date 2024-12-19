@@ -8,43 +8,28 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	if (!sessionToken) {
 		redirect(302, '/login');
 	}
-
-	const requestHeaders = new Headers();
-	requestHeaders.append('Authorization', sessionToken);
-
-	const cartRequest = await fetch(`${env.API}/cart`, {
-		method: 'GET',
-		headers: requestHeaders
-	});
-	let userCart = await cartRequest.json();
-
-	for (const [index, item] of userCart.entries()) {
-		const itemRequest = await fetch(`${env.API}/product/${item.productId}`);
-		const itemResult = await itemRequest.json();
-
-		userCart[index].product = itemResult.product;
-	}
-
-	return { userCart };
 };
 
 export const actions = {
 	updatecart: async (action) => {
 		const sessionToken = action.cookies.get('session_token');
-		const formData = await action.request.formData();
-		const pid = formData.get('product-id');
-		const quantity = formData.get(`qty-${pid}`);
-
-		const formJson = { id: pid, quantity: quantity };
 
 		if (!sessionToken) {
 			redirect(302, '/login');
 		}
 
+		const formData = await action.request.formData();
+		const pid = formData.get('product-id');
+		const cid = formData.get('cart-id');
+		const qstr = formData.get(`qty-${pid}`)?.toString();
+		const quantity = qstr ? parseInt(qstr) : 0;
+
+		const formJson = { quantity: quantity };
+
 		const requestHeaders = new Headers();
 		requestHeaders.append('Authorization', sessionToken);
 
-		const updateRequest = await fetch(`${env.API}/cart/${pid}`, {
+		const updateRequest = await fetch(`${env.API}/cart/${cid}`, {
 			method: 'PUT',
 			headers: requestHeaders,
 			body: JSON.stringify(formJson)
@@ -58,8 +43,6 @@ export const actions = {
 	},
 	checkout: async (action) => {
 		const sessionToken = action.cookies.get('session_token');
-
-		console.log(`token: ${sessionToken}`);
 
 		const requestHeaders = new Headers();
 		requestHeaders.append('Authorization', sessionToken);

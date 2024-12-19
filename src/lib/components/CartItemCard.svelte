@@ -1,12 +1,25 @@
 <script>
-	let { cartItem, productQty = $bindable() } = $props();
-	let product = cartItem.product;
+	import { enhance } from '$app/forms';
 
-	if (cartItem.quantity) {
-		productQty = cartItem.quantity;
-	}
+	let { cartItem } = $props();
+	let product = cartItem.product;
+	let productQty = $state(cartItem.quantity);
 
 	let qtyForm = $state();
+
+	/**
+	 * @param {string} action
+	 * @param {number} quantity
+	 */
+	async function updateQuantity(action, quantity) {
+		if (action == 'add') {
+			quantity++;
+		} else if (action == 'subtract' && quantity > 0) {
+			quantity--;
+		}
+
+		return quantity;
+	}
 </script>
 
 <div
@@ -34,19 +47,23 @@
 			action="?/updatecart"
 			method="post"
 			bind:this={qtyForm}
-			class="flex h-min w-fit flex-row items-center justify-center overflow-clip rounded-lg border border-gray-800"
+			class="flex h-7 w-fit flex-row items-center justify-center overflow-clip rounded-lg border border-gray-800"
+			id={cartItem.id}
+			use:enhance
 		>
 			<button
 				type="button"
 				class="w-6 bg-gray-200"
-				onclick={() => {
-					productQty > 0 ? (productQty -= 1) : (productQty = 0);
+				onclick={async () => {
+					productQty > 0 ? productQty-- : (productQty = 0);
+					await new Promise((r) => setTimeout(r, 1));
 					qtyForm.submit();
 				}}
 			>
 				-
 			</button>
 			<input type="hidden" name="product-id" value={cartItem.productId} />
+			<input type="hidden" name="cart-id" value={cartItem.id} />
 			<input
 				type="number"
 				name={`qty-${cartItem.productId}`}
@@ -57,8 +74,9 @@
 			<button
 				type="button"
 				class="w-6 bg-gray-200"
-				onclick={() => {
-					productQty += 1;
+				onclick={async () => {
+					productQty++;
+					await new Promise((r) => setTimeout(r, 1));
 					qtyForm.submit();
 				}}
 			>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import ItemCard from '$lib/components/ItemCard.svelte';
 	import type { PageData } from './$types';
 
@@ -10,7 +11,16 @@
 	if (data.searchTerm) {
 		searchTerm = data.searchTerm;
 	}
+
+	let formLoading = $state(false);
 </script>
+
+<div
+	class="fixed left-0 top-0 z-10 flex w-full flex-shrink flex-grow-0 flex-col items-end justify-center overflow-x-hidden bg-white opacity-80 transition-all duration-500 md:left-1/2 md:-translate-x-1/2"
+	class:hidden={!formLoading}
+>
+	Loading...
+</div>
 
 <div class="searchbar-container m-4">
 	<h3 class="mb-4 text-[0]">

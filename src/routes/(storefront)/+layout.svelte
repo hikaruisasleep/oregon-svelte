@@ -38,7 +38,7 @@
 					<i class="fa-solid fa-bars fa-xl leading-normal"></i>
 				</button>
 				<div
-					class="fixed left-0 top-0 z-10 flex w-full flex-shrink flex-grow-0 flex-col items-end justify-center overflow-x-hidden bg-gray-300 transition-all duration-500 md:left-1/2 md:w-[480px] md:-translate-x-1/2"
+					class="fixed left-0 top-0 z-10 flex w-full flex-shrink flex-grow-0 flex-col items-end justify-center overflow-x-hidden bg-gray-300 transition-all duration-500 md:left-1/2 md:-translate-x-1/2"
 					class:h-0={navigationHidden}
 					class:h-full={!navigationHidden}
 				>

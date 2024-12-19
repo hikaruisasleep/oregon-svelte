@@ -7,6 +7,7 @@
 	import ctaMascot from '$lib/static/cta-mascot.png';
 
 	import randomizeArray from '$lib/randomizeArray';
+	import { enhance } from '$app/forms';
 
 	let { data }: { data: PageData } = $props();
 	let allProducts = [...data.allProducts];
