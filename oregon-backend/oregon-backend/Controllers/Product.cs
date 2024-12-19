@@ -18,7 +18,7 @@ public class Product : ControllerBase
         _context = context;
     }
     
-    [HttpGet]
+    [HttpGet("featured")]
     [AllowAnonymous]
     public async Task<IActionResult> GetFeatured()
     {
