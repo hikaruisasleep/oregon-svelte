@@ -4,15 +4,17 @@
 
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 
-	if (data.userCart.length > 0) {
-		let totalPrice = $derived.by(() => {
+	let totalPrice = $derived.by(() => {
+		if (data.userCart.length > 0) {
 			let temp = 0;
 			for (const item of data.userCart) {
 				temp += parseInt(item.product.price) * parseInt(item.quantity);
 			}
 			return temp;
-		});
-	}
+		} else {
+			return 0;
+		}
+	});
 
 	let checkoutAnimation = $state(false);
 </script>
