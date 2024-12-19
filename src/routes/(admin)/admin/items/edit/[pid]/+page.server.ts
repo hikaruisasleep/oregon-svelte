@@ -13,7 +13,7 @@ export const actions = {
 		});
 		const deleteResponse = await deleteRequest.json();
 
-		if (deleteResponse.ok) {
+		if (deleteResponse.ok || deleteResponse.message == 'Success') {
 			redirect(302, '/admin/items');
 		} else {
 			error(500, JSON.stringify(deleteResponse));

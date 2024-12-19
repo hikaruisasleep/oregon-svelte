@@ -11,7 +11,7 @@
 		<h3 class="text-2xl">List produk</h3>
 		<a href="/admin/items" class="text-sm text-violet-800"> Lihat semua </a>
 	</div>
-	<div class="products-items flex w-full flex-col gap-2 overflow-hidden h-80">
+	<div class="products-items flex w-full flex-col gap-2 overflow-hidden h-96">
 		{#each data.allProducts as product}
 			<UneditableItemCard {product} />
 		{/each}
