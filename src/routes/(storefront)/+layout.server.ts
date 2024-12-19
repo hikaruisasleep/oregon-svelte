@@ -23,10 +23,12 @@ export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 			headers: requestHeaders
 		});
 		userCart = await cartRequest.json();
-		for (const [index, item] of userCart.entries()) {
-			const itemRequest = await fetch(`${env.API}/product/${item.productId}`);
-			const itemResult = await itemRequest.json();
-			userCart[index].product = itemResult.product;
+		if (userCart) {
+			for (const [index, item] of userCart.entries()) {
+				const itemRequest = await fetch(`${env.API}/product/${item.productId}`);
+				const itemResult = await itemRequest.json();
+				userCart[index].product = itemResult.product;
+			}
 		}
 	}
 
