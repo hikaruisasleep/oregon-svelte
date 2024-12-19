@@ -4,18 +4,20 @@
 
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 
-	let totalPrice = $derived.by(() => {
-		let temp = 0;
-		for (const item of data.userCart) {
-			temp += parseInt(item.product.price) * parseInt(item.quantity);
-		}
-		return temp;
-	});
+	if (data.userCart.length > 0) {
+		let totalPrice = $derived.by(() => {
+			let temp = 0;
+			for (const item of data.userCart) {
+				temp += parseInt(item.product.price) * parseInt(item.quantity);
+			}
+			return temp;
+		});
+	}
 
 	let checkoutAnimation = $state(false);
 </script>
 
-{#if data.userCart.length == 0}
+{#if data.userCart.length >= 0}
 	<div class="flex h-[80vh] w-full flex-col items-center justify-center">
 		<p class="text-[0]">
 			<span class="inline-block -translate-y-1/2 text-xs leading-normal"
