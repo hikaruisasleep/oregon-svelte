@@ -19,7 +19,7 @@
 	let checkoutAnimation = $state(false);
 </script>
 
-{#if data.userCart.length >= 0}
+{#if data.userCart.length <= 0}
 	<div class="flex h-[80vh] w-full flex-col items-center justify-center">
 		<p class="text-[0]">
 			<span class="inline-block -translate-y-1/2 text-xs leading-normal"
